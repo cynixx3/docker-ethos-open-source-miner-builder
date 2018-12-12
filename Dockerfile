@@ -1,5 +1,5 @@
 #Save this file as Dockerfile then run:
-#  docker build --tag ccminer .
+#  docker build -t ccminer .
 #  docker run -v $(pwd):/host -it ccminer
 #* Setup the environment
 FROM ubuntu:16.04
@@ -50,8 +50,12 @@ RUN \
   ./autogen.sh \
 && ./configure
 
-RUN \
-  export PATH=$PATH:/usr/local/cuda-9.2/bin \
-&& make
+RUN \ 
+  printf "#!/bin/bash\n\
+git pull\n\
+export PATH=$PATH:/usr/local/cuda-9.2/bin\n\
+make\n\
+cp ccminer /host" > run.sh \
+&& chmod u+x run.sh
 
-CMD ["cp", "ccminer", "/host"]
+CMD ["/bin/bash", "-c", "/build/ccminer/run.sh"]
