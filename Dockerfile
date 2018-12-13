@@ -1,61 +1,44 @@
-#Save this file as Dockerfile then run:
-#  docker build -t ccminer .
-#  docker run -v $(pwd):/host -it ccminer
-#* Setup the environment
-FROM ubuntu:16.04
-RUN \
-  apt-get update \
-&& apt-get -y dist-upgrade \
-&& DEBIAN_FRONTEND=noninteractive apt-get -y install \
-automake \
-build-essential \
-curl \
-g++ \
-gawk \
-gcc \
-git \
-libcurl4-openssl-dev \
-libc++-dev \
-libgmp-dev \
-libjansson-dev \
-libssl-dev \
-linux-headers-4.15.0-42-generic \
-python-dev \
-xorg \
-&& mkdir /build
+# To build several forks of ccminer for a ubuntu 16 environment
+# Save the contents of this to Dockerfile and run the commands below
+#* docker build -t ccminer .
+#* docker run -v $(pwd):/host -it ccminer
+# Just running the second command would rebuild with updates
+FROM nvidia/cuda:10.0-devel-ubuntu16.04
+
+RUN apt-get -y update \
+&&  DEBIAN_FRONTEND=noninteractive apt-get -y install \
+        automake \
+        git \
+        libssl-dev \
+        libcurl4-openssl-dev
+
 WORKDIR /build
 
-#* Installing CUDA 9.2 and compatible drivers from nvidia website and not from ubuntu package is usually easier
-ARG CUDA_TOOLKIT_URL=https://developer.nvidia.com/compute/cuda/9.2/Prod2/local_installers/cuda_9.2.148_396.37_linux
-ARG CUDA_TOOLKIT_PATCHURL=https://developer.nvidia.com/compute/cuda/9.2/Prod2/patches/1/cuda_9.2.148.1_linux
+ARG MINER_GIT_URL=https://github.com/tpruvot/ccminer.git
+ARG MINER_GIT_BRANCH=linux
+ARG MINER_FOLDER=ccminer
+#* Or set a different fork here or using in the build command with --build-arg
+#* Klaust
+#ARG MINER_GIT_URL=https://github.com/KlausT/ccminer.git
+#* Nevermore
+#ARG MINER_GIT_URL=https://github.com/brian112358/nevermore-miner.git
+#ARG MINER_FOLDER=nevermore-miner
+#* Zcoin
+#ARG MINER_GIT_URL=https://github.com/zcoinofficial/ccminer.git
+#ARG MINER_GIT_BRANCH=master
 
-RUN \
-  curl -LO $CUDA_TOOLKIT_URL  \
-&& curl -LO $CUDA_TOOLKIT_PATCHURL
+RUN git clone $MINER_GIT_URL --branch $MINER_GIT_BRANCH --single-branch
 
-RUN \
-  sh ./$(basename "$CUDA_TOOLKIT_URL") --silent --toolkit --no-drm
+WORKDIR /build/$MINER_FOLDER
 
-RUN \
-  sh ./$(basename "$CUDA_TOOLKIT_PATCHURL") --silent --accept-eula
+RUN ./autogen.sh \
+&&  ./configure --with-cuda=/usr/local/cuda
 
-#* Copy miners source code and dependency code into the environment
-ARG MINER_GIT_URL=https://github.com/zcoinofficial/ccminer.git
-RUN git clone $MINER_GIT_URL --recursive
-WORKDIR /build/ccminer/
-RUN git submodule update --init
-
-#* Compiling ccminner
-RUN \
-  ./autogen.sh \
-&& ./configure
-
-RUN \ 
-  printf "#!/bin/bash\n\
+RUN printf "#!/bin/bash\n\
 git pull\n\
-export PATH=$PATH:/usr/local/cuda-9.2/bin\n\
+sed -E 's/^#(nvcc_ARCH.*$)/\1/' -i Makefile.am\n\
 make\n\
-cp ccminer /host" > run.sh \
-&& chmod u+x run.sh
+cp ccminer /host" > /run.sh \
+&&  chmod u+x /run.sh
 
-CMD ["/bin/bash", "-c", "/build/ccminer/run.sh"]
+CMD ["/bin/bash", "-c", "/run.sh"]
