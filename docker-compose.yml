@@ -126,3 +126,16 @@ services:
         - MINER_FOLDER=xmr-stak
         - MINER_EXE="bin/xmr-stak bin/libxmrstak_cuda_backend.so bin/libxmrstak_opencl_backend.so"
         - MINER_CONFIG="cmake -DXMR-STAK_COMPILE=generic -DCPU_ENABLE=ON -DCMAKE_LINK_STATIC=ON -DCUDA_ENABLE=ON -DOpenCL_ENABLE=ON --build ."
+  xmrig-amd:
+    volumes:
+      - .:/host
+    image: xmrig-amd
+    container_name: xmrig-amd
+    build:
+      context: .
+      args:
+        - MINER_GIT_URL=https://github.com/xmrig/xmrig-amd.git
+        - MINER_GIT_BRANCH=master
+        - MINER_FOLDER=xmrig-amd
+        - MINER_EXE="xmrig-amd"
+        - MINER_CONFIG="cmake ."
