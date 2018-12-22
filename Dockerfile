@@ -17,7 +17,7 @@ RUN apt-get -y update \
 #* for ethminer
         cmake mesa-common-dev \
 #* for xmr-stak
-        opencl-headers ocl-icd-opencl-dev libmicrohttpd-dev libhwloc-dev
+         libhwloc-dev libmicrohttpd-dev ocl-icd-opencl-dev opencl-headers
 
 WORKDIR /build
 
@@ -76,6 +76,7 @@ RUN git clone $MINER_GIT_URL --branch $MINER_GIT_BRANCH --single-branch
 WORKDIR /build/$MINER_FOLDER
 RUN if [ -f .gitmodules ] ; then git submodule update --init ; fi
 
+#* for ccminer and sgminer compatability
 RUN $MINER_GEN
 
 RUN \
@@ -88,7 +89,7 @@ git pull\n\
 #* for ccminer compatability
 sed -E 's/^#(nvcc_ARCH.*$)/\1/' -i Makefile.am\n\
 make\n\
-strip $MINER_EXE \n\
+strip $MINER_EXE\n\
 cp $MINER_EXE /host" > run.sh \
 &&  chmod u+x run.sh
 
