@@ -27,7 +27,6 @@ ARG MINER_GIT_BRANCH=linux
 ARG MINER_FOLDER=ccminer
 ARG MINER_EXE=ccminer
 ARG MINER_GEN="./autogen.sh"
-#ARG MINER_CONFIG="CUDA_CFLAGS='-O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES' ./configure CXXFLAGS='-O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16' --with-cuda=/usr/local/cuda"
 ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
 
 #* CCMiner forks (duplicate values above omitted below, so just uncomment both sections)
@@ -79,7 +78,10 @@ RUN if [ -f .gitmodules ] ; then git submodule update --init ; fi
 
 RUN $MINER_GEN
 
-RUN $MINER_CONFIG CUDA_CFLAGS="-O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES" CXXFLAGS='-O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16'
+RUN \
+#* for ccminer compatability
+CUDA_CFLAGS="-O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES" CXXFLAGS='-O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16' \
+ $MINER_CONFIG
 
 RUN printf "#!/bin/bash\n\
 git pull\n\
