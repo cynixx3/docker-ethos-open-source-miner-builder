@@ -86,7 +86,7 @@ git pull\n\
 #* for ccminer compatability
 sed -E 's/^#(nvcc_ARCH.*$)/\1/' -i Makefile.am\n\
 make\n\
-strip $MINER_EXE \
+strip $MINER_EXE \n\
 cp $MINER_EXE /host" > run.sh \
 &&  chmod u+x run.sh
 
