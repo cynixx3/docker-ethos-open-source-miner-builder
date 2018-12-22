@@ -17,6 +17,20 @@ services:
         - MINER_EXE=ccminer
         - MINER_GEN="./autogen.sh"
         - MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
+#  klaust-ccminer:
+#    volumes:
+#      - .:/host
+#    image: klaust-ccminer
+#    container_name: klaust-ccminer
+#    build:
+#      context: .
+#      args:
+#        - MINER_GIT_URL=https://github.com/KlausT/ccminer.git
+#        - MINER_GIT_BRANCH=linux
+#        - MINER_FOLDER=klaust-miner
+#        - MINER_EXE=ccminer
+#        - MINER_GEN="./autogen.sh"
+#        - MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
 #  nevermore-ccminer:
 #    volumes:
 #      - .:/host
