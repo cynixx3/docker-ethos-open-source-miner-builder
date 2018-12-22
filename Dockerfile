@@ -27,7 +27,7 @@ ARG MINER_GIT_BRANCH=linux
 ARG MINER_FOLDER=ccminer
 ARG MINER_EXE=ccminer
 ARG MINER_GEN="./autogen.sh"
-ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
+ARG MINER_CONFIG="CUDA_CFLAGS='-O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES' ./configure CXXFLAGS='-O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16' --with-cuda=/usr/local/cuda"
 
 #* CCMiner forks (duplicate values above omitted below, so just uncomment both sections)
 #* Klaust
@@ -74,7 +74,7 @@ ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
 RUN git clone $MINER_GIT_URL --branch $MINER_GIT_BRANCH --single-branch
 
 WORKDIR /build/$MINER_FOLDER
-RUN git submodule update --init
+RUN if [ -f .gitmodules ] ; then git submodule update --init ; fi
 
 RUN $MINER_GEN
 
@@ -85,6 +85,7 @@ git pull\n\
 #* for ccminer compatability
 sed -E 's/^#(nvcc_ARCH.*$)/\1/' -i Makefile.am\n\
 make\n\
+strip $MINER_EXE \
 cp $MINER_EXE /host" > /run.sh \
 &&  chmod u+x /run.sh
 
