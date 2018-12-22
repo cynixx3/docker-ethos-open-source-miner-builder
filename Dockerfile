@@ -17,7 +17,9 @@ RUN apt-get -y update \
 #* for ethminer
         cmake mesa-common-dev \
 #* for xmr-stak
-         libhwloc-dev libmicrohttpd-dev ocl-icd-opencl-dev opencl-headers
+         libhwloc-dev libmicrohttpd-dev ocl-icd-opencl-dev opencl-headers \
+#* for xmrig-amd
+         libuv1-dev
 
 WORKDIR /build
 
@@ -71,6 +73,13 @@ ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
 #ARG MINER_EXE="bin/xmr-stak bin/libxmrstak_cuda_backend.so bin/libxmrstak_opencl_backend.so"
 #ARG MINER_CONFIG="cmake -DXMR-STAK_COMPILE=generic -DCPU_ENABLE=ON -DCMAKE_LINK_STATIC=ON -DCUDA_ENABLE=ON -DOpenCL_ENABLE=ON --build ."
 
+#* xmrig-amd
+#ARG MINER_GIT_URL=https://github.com/xmrig/xmrig-amd.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=xmrig-amd
+#ARG MINER_EXE="xmrig-amd"
+#ARG MINER_CONFIG="cmake ."
+
 RUN git clone $MINER_GIT_URL --branch $MINER_GIT_BRANCH --single-branch
 
 WORKDIR /build/$MINER_FOLDER
@@ -81,8 +90,8 @@ RUN $MINER_GEN
 
 RUN \
 #* for ccminer compatability
-CUDA_CFLAGS="-O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES" CXXFLAGS='-O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16' \
- $MINER_CONFIG
+    CUDA_CFLAGS="-O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES" CXXFLAGS='-O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16' \
+    $MINER_CONFIG
 
 RUN printf "#!/bin/bash\n\
 git pull\n\
