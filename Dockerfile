@@ -80,6 +80,11 @@ ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
 #ARG MINER_EXE="xmrig-amd"
 #ARG MINER_CONFIG="cmake ."
 
+#* xmrig Monero Ocean (xmrig-amd fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/MoneroOcean/xmrig.git
+#ARG MINER_FOLDER=xmrig
+#ARG MINER_EXE="xmrig"
+
 RUN git clone $MINER_GIT_URL --branch $MINER_GIT_BRANCH --single-branch
 
 WORKDIR /build/$MINER_FOLDER
