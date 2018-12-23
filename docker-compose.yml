@@ -153,6 +153,18 @@ services:
 #        MINER_GIT_BRANCH: master
 #        MINER_FOLDER: silentarmy
 #        MINER_EXE: silentarmy
+#  AMDVerusCoin:
+#    volumes:
+#      - .:/host
+#    image: amdveruscoin
+#    container_name: amdveruscoin
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/monkins1010/AMDVerusCoin.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: AMDVerusCoin
+#        MINER_EXE: silentarmy sa-solver
   xmr-stak:
     volumes:
       - .:/host

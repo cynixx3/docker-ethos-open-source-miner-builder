@@ -40,8 +40,8 @@ ARG MINER_KERNELS
 ARG MINER_GEN
 ARG MINER_CONFIG
 
-#* Uncomment a parent (and fork) section below to build an single miner 
-#* CCMiner
+#* Uncomment a parent (and fork) section below to build a single miner 
+#* CCMiner (parent)
 #ARG MINER_GIT_URL=https://github.com/tpruvot/ccminer.git
 #ARG MINER_GIT_BRANCH=linux
 #ARG MINER_FOLDER=ccminer
@@ -49,25 +49,24 @@ ARG MINER_CONFIG
 #ARG MINER_GEN=./autogen.sh
 #ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
 
-#* CCMiner forks (duplicate values above omitted below, so just uncomment both sections)
-#* Klaust
+#* Klaust (ccminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/KlausT/ccminer.git
 
-#* Nevermore
+#* Nevermore (ccminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/brian112358/nevermore-miner.git
 #ARG MINER_FOLDER=nevermore-miner
 
-#* Zcoin
+#* Zcoin (ccminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/zcoinofficial/ccminer.git
 #ARG MINER_GIT_BRANCH=master
 
-#* Dagger GPU miner
+#* Dagger GPU miner (ccminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/XDagger/DaggerGpuMiner.git
 #ARG MINER_GIT_BRANCH=master
 #ARG MINER_FOLDER=DaggerGpuMiner/GpuMiner
 #ARG MINER_EXE=xdag-gpu
 
-#* Ethminer
+#* Ethminer (parent)
 #ARG MINER_GIT_URL=https://github.com/ethereum-mining/ethminer.git
 #ARG MINER_GIT_BRANCH=master
 #ARG MINER_FOLDER=ethminer
@@ -87,7 +86,7 @@ ARG MINER_CONFIG
 #ARG MINER_KERNELS
 #ARG MINER_CONFIG="cmake -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DETHASHCL=OFF -DETHASHCUDA=ON -DETHSTRATUM=ON --build ."
 
-#* SGminer-GM
+#* SGminer-GM (parent)
 #ARG MINER_GIT_URL=https://github.com/tpruvot/sgminer.git
 #ARG MINER_GIT_BRANCH=ethash
 #ARG MINER_FOLDER=sgminer
@@ -101,29 +100,32 @@ ARG MINER_CONFIG
 #ARG MINER_GIT_BRANCH=master
 #ARG MINER_FOLDER=avermore-miner
 
-#* SilentArmy
+#* SilentArmy (parent)
 #ARG MINER_GIT_URL=https://github.com/mbevand/silentarmy.git
 #ARG MINER_GIT_BRANCH=master
 #ARG MINER_FOLDER=silentarmy
-#ARG MINER_EXE=silentarmy
+#ARG MINER_EXE="silentarmy sa-solver"
 
-#* XMR-Stak
+#* AMDVerusCoin (silentarmy fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/monkins1010/AMDVerusCoin.git
+#ARG MINER_FOLDER=AMDVerusCoin
+
+#* XMR-Stak (parent)
 #ARG MINER_GIT_URL=https://github.com/fireice-uk/xmr-stak.git
 #ARG MINER_GIT_BRANCH=master
 #ARG MINER_FOLDER=xmr-stak
 #ARG MINER_EXE="bin/xmr-stak bin/libxmrstak_cuda_backend.so bin/libxmrstak_opencl_backend.so"
 #ARG MINER_CONFIG="cmake -DXMR-STAK_COMPILE=generic -DCPU_ENABLE=ON -DCMAKE_LINK_STATIC=ON -DCUDA_ENABLE=ON -DOpenCL_ENABLE=ON --build ."
 
-#* xmrig-amd
+#* xmrig-amd (parent)
 #ARG MINER_GIT_URL=https://github.com/xmrig/xmrig-amd.git
 #ARG MINER_GIT_BRANCH=master
 #ARG MINER_FOLDER=xmrig-amd
 #ARG MINER_EXE=xmrig-amd
 #ARG MINER_CONFIG="cmake ."
 
-#* xmrig-nvidia
+#* xmrig-nvidia (xmrig-amd like, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/xmrig/xmrig-nvidia.git
-#ARG MINER_GIT_BRANCH=master
 #ARG MINER_FOLDER=xmrig-nvidia
 #ARG MINER_EXE=xmrig-nvidia
 #ARG MINER_CONFIG="cmake -DCUDA_ARCH=30;50;60 ."
