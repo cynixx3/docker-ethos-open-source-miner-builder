@@ -28,4 +28,4 @@ If you make Dockerfile changes after running compose up, then to rebuild without
 
 Note: With either method this docker will overwrite same named files on the host.
 
-Note: Miner folders will likely be root after building, to fix run `chown -R $(whoami).$(whoami) *`
+Note: Miner folders will likely be root after building, to fix run `sudo chown -R $(whoami).$(whoami) *`
