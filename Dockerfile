@@ -39,12 +39,12 @@ ARG MINER_GEN
 ARG MINER_CONFIG
 
 #* CCMiner (setting the variables above)
-ARG MINER_GIT_URL=https://github.com/tpruvot/ccminer.git
-ARG MINER_GIT_BRANCH=linux
-ARG MINER_FOLDER=ccminer
-ARG MINER_EXE=ccminer
-ARG MINER_GEN=./autogen.sh
-ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
+#ARG MINER_GIT_URL=https://github.com/tpruvot/ccminer.git
+#ARG MINER_GIT_BRANCH=linux
+#ARG MINER_FOLDER=ccminer
+#ARG MINER_EXE=ccminer
+#ARG MINER_GEN=./autogen.sh
+#ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
 
 #* CCMiner forks (duplicate values above omitted below, so just uncomment both sections)
 #* Klaust
