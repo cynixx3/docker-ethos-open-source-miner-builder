@@ -59,6 +59,18 @@ services:
 #        MINER_EXE: ccminer
 #        MINER_GEN: ./autogen.sh
 #        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
+#  dagger-miner:
+#    volumes:
+#      - .:/host
+#    image: dagger-miner
+#    container_name: dagger-miner
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/XDagger/DaggerGpuMiner.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: DaggerGpuMiner/GpuMiner
+#        MINER_EXE: xdag-gpu
   ethminer:
     volumes:
       - .:/host
@@ -111,7 +123,7 @@ services:
         MINER_GIT_URL: https://github.com/tpruvot/sgminer.git
         MINER_GIT_BRANCH: ethash
         MINER_FOLDER: sgminer
-        MINER_EXE: sgminer kernel/
+        MINER_EXE: sgminer
         MINER_KERNELS: kernel/
         MINER_GEN: ./autogen.sh
         MINER_CONFIG: ./configure

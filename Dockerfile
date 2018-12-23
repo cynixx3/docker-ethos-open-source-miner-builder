@@ -13,6 +13,8 @@ RUN apt-get -y update \
         libssl-dev \
 #* for ccminer
         libcurl4-openssl-dev \
+#* for DaggerGPUMiner
+        libboost-dev libboost-system-dev \
 #* for ethminer
         cmake mesa-common-dev \
 #* for xmr-stak
@@ -58,6 +60,12 @@ ARG MINER_CONFIG
 #* Zcoin
 #ARG MINER_GIT_URL=https://github.com/zcoinofficial/ccminer.git
 #ARG MINER_GIT_BRANCH=master
+
+#* Dagger GPU miner
+#ARG MINER_GIT_URL=https://github.com/XDagger/DaggerGpuMiner.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=DaggerGpuMiner/GpuMiner
+#ARG MINER_EXE=xdag-gpu
 
 #* Ethminer
 #ARG MINER_GIT_URL=https://github.com/ethereum-mining/ethminer.git
@@ -132,8 +140,8 @@ git pull \n\
 if [ -f Makefile.am ] ; then sed -E 's/^#(nvcc_ARCH.*$)/\1/' -i Makefile.am ; fi \n\
 make \n\
 strip $MINER_EXE \n\
-if [ ! -d /host/$MINER_FOLDER ] ; then mkdir /host/$MINER_FOLDER ; fi \n\
-rsync -av $MINER_EXE /host/$MINER_FOLDER \n\
+if [ ! -d /host/$MINER_FOLDER ] ; then mkdir /host/$(echo $MINER_FOLDER | cut -d / -f 1) ; fi \n\
+rsync -av $MINER_EXE /host/$(echo $MINER_FOLDER | cut -d / -f 1) \n\
 if [ $MINER_KERNELS ] ; then cp -r $MINER_KERNELS /host/$MINER_FOLDER/kernels ; fi" > run.sh \
 &&  chmod u+x run.sh
 
