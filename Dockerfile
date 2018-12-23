@@ -19,7 +19,14 @@ RUN apt-get -y update \
 #* for xmr-stak
          libhwloc-dev libmicrohttpd-dev ocl-icd-opencl-dev opencl-headers \
 #* for xmrig-amd
-         libuv1-dev
+         libuv1-dev \
+#* for energiminer
+&&  printf "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main \n#deb-src http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main \n" >> /etc/apt/sources.list \
+&&  DEBIAN_FRONTEND=noninteractive apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 60C317803A41BA51845E371A1E9377A2BA9EF27F \
+&&  apt-get update \
+&&  DEBIAN_FRONTEND=noninteractive apt-get -y install \
+        gcc-6 g++-6 \
+&&  update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60
 
 WORKDIR /build
 
@@ -117,7 +124,8 @@ git pull\n\
 sed -E 's/^#(nvcc_ARCH.*$)/\1/' -i Makefile.am\n\
 make\n\
 strip $MINER_EXE\n\
-cp $MINER_EXE /host" > run.sh \
+mkdir /host/$MINER_FOLDER\n\
+cp $MINER_EXE /host/$MINER_FOLDER" > run.sh \
 &&  chmod u+x run.sh
 
 CMD ["/bin/bash", "-c", "./run.sh"]
