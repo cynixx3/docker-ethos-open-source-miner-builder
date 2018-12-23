@@ -167,6 +167,19 @@ services:
 #        MINER_FOLDER: xmrig-amd
 #        MINER_EXE: xmrig-amd
 #        MINER_CONFIG: cmake .
+#  xmrig-nvidia:
+#    volumes:
+#      - .:/host
+#    image: xmrig-nvidia
+#    container_name: xmrig-nvidia
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/xmrig/xmrig-nvidia.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: xmrig-nvidia
+#        MINER_EXE: xmrig-nvidia
+#        MINER_CONFIG: cmake -DCUDA_ARCH="30;50;60" .
 #  xmrig-MoneroOcean:
 #    volumes:
 #      - .:/host

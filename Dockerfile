@@ -115,6 +115,13 @@ ARG MINER_CONFIG
 #ARG MINER_EXE=xmrig-amd
 #ARG MINER_CONFIG="cmake ."
 
+#* xmrig-nvidia
+#ARG MINER_GIT_URL=https://github.com/xmrig/xmrig-nvidia.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=xmrig-nvidia
+#ARG MINER_EXE=xmrig-nvidia
+#ARG MINER_CONFIG="cmake -DCUDA_ARCH=30;50;60 ."
+
 #* xmrig Monero Ocean (xmrig-amd fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/MoneroOcean/xmrig.git
 #ARG MINER_FOLDER=xmrig
