@@ -1,7 +1,6 @@
 # To build several miners for a ubuntu 16 environment
 # Save the contents of this to Dockerfile
-# comment / uncomment what you want
-# and run the commands below
+# uncomment what you want and run the commands below
 #* docker build -t miner .
 #* docker run -v $(pwd):/host -it miner
 # Just running the second command would rebuild with updates
@@ -35,10 +34,12 @@ ARG MINER_GIT_URL
 ARG MINER_GIT_BRANCH
 ARG MINER_FOLDER
 ARG MINER_EXE
+ARG MINER_KERNELS
 ARG MINER_GEN
 ARG MINER_CONFIG
 
-#* CCMiner (setting the variables above)
+#* Uncomment a parent (and fork) section below to build an single miner 
+#* CCMiner
 #ARG MINER_GIT_URL=https://github.com/tpruvot/ccminer.git
 #ARG MINER_GIT_BRANCH=linux
 #ARG MINER_FOLDER=ccminer
@@ -49,9 +50,11 @@ ARG MINER_CONFIG
 #* CCMiner forks (duplicate values above omitted below, so just uncomment both sections)
 #* Klaust
 #ARG MINER_GIT_URL=https://github.com/KlausT/ccminer.git
+
 #* Nevermore
 #ARG MINER_GIT_URL=https://github.com/brian112358/nevermore-miner.git
 #ARG MINER_FOLDER=nevermore-miner
+
 #* Zcoin
 #ARG MINER_GIT_URL=https://github.com/zcoinofficial/ccminer.git
 #ARG MINER_GIT_BRANCH=master
@@ -61,16 +64,19 @@ ARG MINER_CONFIG
 #ARG MINER_GIT_BRANCH=master
 #ARG MINER_FOLDER=ethminer
 #ARG MINER_EXE=ethminer/ethminer
+#ARG MINER_KERNELS=libethash-cl/kernels/bin
 #ARG MINER_CONFIG="cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build ."
 
 #* Energi miner (ethminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/energicryptocurrency/energiminer.git
 #ARG MINER_FOLDER=energiminer
+#ARG MINER_KERNELS=libnrghash-cl/kernels/bin
 #ARG MINER_EXE=energiminer/energiminer
 
 #* ProgPOW (ethminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/ifdefelse/ProgPOW.git
 #ARG MINER_FOLDER=ProgPOW
+#ARG MINER_KERNELS
 #ARG MINER_CONFIG="cmake -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DETHASHCL=OFF -DETHASHCUDA=ON -DETHSTRATUM=ON --build ."
 
 #* SGminer-GM
@@ -78,6 +84,7 @@ ARG MINER_CONFIG
 #ARG MINER_GIT_BRANCH=ethash
 #ARG MINER_FOLDER=sgminer
 #ARG MINER_EXE=sgminer
+#ARG MINER_KERNELS=kernel
 #ARG MINER_GEN="autoreconf -i"
 #ARG MINER_CONFIG="./configure"
 
@@ -120,13 +127,14 @@ RUN \
     $MINER_CONFIG
 
 RUN printf "#!/bin/bash\n\
-git pull\n\
-#* for ccminer compatability
-sed -E 's/^#(nvcc_ARCH.*$)/\1/' -i Makefile.am\n\
-make\n\
-strip $MINER_EXE\n\
-mkdir /host/$MINER_FOLDER\n\
-cp $MINER_EXE /host/$MINER_FOLDER" > run.sh \
+git pull \n\
+#* for ccminer compatability \n\
+if [ -f Makefile.am ] ; then sed -E 's/^#(nvcc_ARCH.*$)/\1/' -i Makefile.am ; fi \n\
+make \n\
+strip $MINER_EXE \n\
+if [ ! -d /host/$MINER_FOLDER ] ; then mkdir /host/$MINER_FOLDER ; fi \n\
+rsync -av $MINER_EXE /host/$MINER_FOLDER \n\
+if [ $MINER_KERNELS ] ; then cp -r $MINER_KERNELS /host/$MINER_FOLDER/kernels ; fi" > run.sh \
 &&  chmod u+x run.sh
 
 CMD ["/bin/bash", "-c", "./run.sh"]

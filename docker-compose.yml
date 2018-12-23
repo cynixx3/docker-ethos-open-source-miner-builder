@@ -71,6 +71,7 @@ services:
         MINER_GIT_BRANCH: master
         MINER_FOLDER: ethminer
         MINER_EXE: ethminer/ethminer
+        MINER_KERNELS: libethash-cl/kernels/bin/
         MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
 #  energiminer:
 #    volumes:
@@ -84,6 +85,7 @@ services:
 #        MINER_GIT_BRANCH: master
 #        MINER_FOLDER: energiminer
 #        MINER_EXE: energiminer/energiminer
+#        MINER_KERNELS: libnrghash-cl/kernels/bin
 #        MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
   progpowminer:
     volumes:
@@ -109,7 +111,8 @@ services:
         MINER_GIT_URL: https://github.com/tpruvot/sgminer.git
         MINER_GIT_BRANCH: ethash
         MINER_FOLDER: sgminer
-        MINER_EXE: sgminer
+        MINER_EXE: sgminer kernel/
+        MINER_KERNELS: kernel/
         MINER_GEN: ./autogen.sh
         MINER_CONFIG: ./configure
   avermore:
