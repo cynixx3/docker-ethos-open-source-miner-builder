@@ -2,7 +2,7 @@
 Docker image which makes building or updating your own or preferred open source miner for ethOS without polluting your system with openCL and CUDA libraries. The resulting binary can be used to replace the existing miner binary in /opt/miners/minerfolder/minerbinary of your mining rig. Make sure to backup the existing binary. Please be aware that the new binary will get replaced with every update of ethOS (ethos-update) and/or its miners (update-miners). 
 
 
-There are a couple ways to command the build file one way would be to just comment or uncomment variables for the miner you want, then run ```docker build -t miner .``` to build the miner environment. 
+There are a couple ways to command the build file one way would be to just uncomment variables for the miner you want, then run ```docker build -t miner .``` to build the miner environment. 
 
 Then to compile, or recompile the miner with any updates run ```docker run -v $(pwd):/host -it miner``` (for windows set the absolute path of the directory you want the miner to be copied to IE ```docker run -v C:\Miners:/host -it miner```)
 
@@ -27,3 +27,5 @@ Once the image build was successful and the container was created using the up c
 If you make Dockerfile changes after running compose up, then to rebuild without having to delete all images and start fresh (within the same cuda version / opencl version), run ```docker-compose up --build``` but to pull the latest miner code, re-compile, and copy the latest version to the host just command ```docker-compose up```. 
 
 Note: With either method this docker will overwrite same named files on the host.
+
+Note: Miner folders will likely be root after building, to fix run `chown -R $(whoami).$(whoami) *`

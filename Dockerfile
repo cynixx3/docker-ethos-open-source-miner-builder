@@ -8,7 +8,7 @@
 FROM nvidia/cuda:10.0-devel-ubuntu16.04
 
 RUN apt-get -y update \
-&&  apt-get -y install \
+&&  DEBIAN_FRONTEND=noninteractive apt-get -y install \
         automake \
         git \
         libssl-dev \
@@ -25,7 +25,7 @@ RUN apt-get -y update \
 &&  DEBIAN_FRONTEND=noninteractive apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 60C317803A41BA51845E371A1E9377A2BA9EF27F \
 &&  apt-get update \
 &&  DEBIAN_FRONTEND=noninteractive apt-get -y install \
-        gcc-6 g++-6 \
+         gcc-6 g++-6 \
 &&  update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60
 
 WORKDIR /build
@@ -115,7 +115,8 @@ RUN $MINER_GEN
 
 RUN \
 #* for ccminer compatability (-std=c++0x for energiminer)
-    CUDA_CFLAGS="-O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES" CXXFLAGS="-O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16i -std=c++0x" \
+    CUDA_CFLAGS="-O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES" \
+    CXXFLAGS="-O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16 -std=c++0x" \
     $MINER_CONFIG
 
 RUN printf "#!/bin/bash\n\

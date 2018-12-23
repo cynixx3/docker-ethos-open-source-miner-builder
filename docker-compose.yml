@@ -27,24 +27,24 @@ services:
 #      args:
 #        MINER_GIT_URL: https://github.com/KlausT/ccminer.git
 #        MINER_GIT_BRANCH: linux
-#        MINER_FOLDER: klaust-miner
+#        MINER_FOLDER: ccminer
 #        MINER_EXE: ccminer
 #        MINER_GEN: ./autogen.sh
 #        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
-#  nevermore-ccminer:
-#    volumes:
-#      - .:/host
-#    image: nevermore-ccminer
-#    container_name: nevermore-ccminer
-#    build:
-#      context: .
-#      args:
-#        MINER_GIT_URL: https://github.com/brian112358/nevermore-miner.git
-#        MINER_GIT_BRANCH: linux
-#        MINER_FOLDER: nevermore-miner
-#        MINER_EXE: ccminer
-#        MINER_GEN: ./autogen.sh
-#        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
+  nevermore-ccminer:
+    volumes:
+      - .:/host
+    image: nevermore-ccminer
+    container_name: nevermore-ccminer
+    build:
+      context: .
+      args:
+        MINER_GIT_URL: https://github.com/brian112358/nevermore-miner.git
+        MINER_GIT_BRANCH: linux
+        MINER_FOLDER: nevermore-miner
+        MINER_EXE: ccminer
+        MINER_GEN: ./autogen.sh
+        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
 #  zcoin-ccminer:
 #    volumes:
 #      - .:/host
@@ -72,32 +72,32 @@ services:
         MINER_FOLDER: ethminer
         MINER_EXE: ethminer/ethminer
         MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
-  energiminer:
-    volumes:
-      - .:/host
-    image: energiminer
-    container_name: energipowminer
-    build:
-      context: .
-      args:
-        MINER_GIT_URL: https://github.com/energicryptocurrency/energiminer.git
-        MINER_GIT_BRANCH: master
-        MINER_FOLDER: energiminer
-        MINER_EXE: energiminer/energiminer
-        MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
-#  progpowminer:
+#  energiminer:
 #    volumes:
 #      - .:/host
-#    image: progpowminer
-#    container_name: progpowminer
+#    image: energiminer
+#    container_name: energipowminer
 #    build:
 #      context: .
 #      args:
-#        MINER_GIT_URL: https://github.com/ifdefelse/ProgPOW.git
+#        MINER_GIT_URL: https://github.com/energicryptocurrency/energiminer.git
 #        MINER_GIT_BRANCH: master
-#        MINER_FOLDER: ProgPOW
-#        MINER_EXE: ethminer/ethminer
-#        MINER_CONFIG: cmake -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DETHASHCL=OFF -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
+#        MINER_FOLDER: energiminer
+#        MINER_EXE: energiminer/energiminer
+#        MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
+  progpowminer:
+    volumes:
+      - .:/host
+    image: progpowminer
+    container_name: progpowminer
+    build:
+      context: .
+      args:
+        MINER_GIT_URL: https://github.com/ifdefelse/ProgPOW.git
+        MINER_GIT_BRANCH: master
+        MINER_FOLDER: ProgPOW
+        MINER_EXE: ethminer/ethminer
+        MINER_CONFIG: cmake -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DETHASHCL=OFF -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
   sgminer:
     volumes:
       - .:/host
@@ -110,22 +110,22 @@ services:
         MINER_GIT_BRANCH: ethash
         MINER_FOLDER: sgminer
         MINER_EXE: sgminer
-        MINER_GEN: echo hi;automake --add-missing
+        MINER_GEN: ./autogen.sh
         MINER_CONFIG: ./configure
-#  avermore:
-#    volumes:
-#      - .:/host
-#    image: avermore
-#    container_name: avermore
-#    build:
-#      context: .
-#      args:
-#        MINER_GIT_URL: https://github.com/brian112358/avermore-miner.git
-#        MINER_GIT_BRANCH: ethash
-#        MINER_FOLDER: avermore-miner
-#        MINER_EXE: sgminer
-#        MINER_GEN: autoreconf -i
-#        MINER_CONFIG: ./configure
+  avermore:
+    volumes:
+      - .:/host
+    image: avermore
+    container_name: avermore
+    build:
+      context: .
+      args:
+        MINER_GIT_URL: https://github.com/brian112358/avermore-miner.git
+        MINER_GIT_BRANCH: master
+        MINER_FOLDER: avermore-miner
+        MINER_EXE: sgminer
+        MINER_GEN: autoreconf -i
+        MINER_CONFIG: ./configure
   xmr-stak:
     volumes:
       - .:/host
@@ -139,29 +139,29 @@ services:
         MINER_FOLDER: xmr-stak
         MINER_EXE: bin/xmr-stak bin/libxmrstak_cuda_backend.so bin/libxmrstak_opencl_backend.so
         MINER_CONFIG: cmake -DXMR-STAK_COMPILE=generic -DCPU_ENABLE=ON -DCMAKE_LINK_STATIC=ON -DCUDA_ENABLE=ON -DOpenCL_ENABLE=ON --build .
-  xmrig-amd:
-    volumes:
-      - .:/host
-    image: xmrig-amd
-    container_name: xmrig-amd
-    build:
-      context: .
-      args:
-        MINER_GIT_URL: https://github.com/xmrig/xmrig-amd.git
-        MINER_GIT_BRANCH: master
-        MINER_FOLDER: xmrig-amd
-        MINER_EXE: xmrig-amd
-        MINER_CONFIG: cmake .
-  xmrig-MoneroOcean:
-    volumes:
-      - .:/host
-    image: xmrig-mo
-    container_name: xmrig-mo
-    build:
-      context: .
-      args:
-        MINER_GIT_URL: https://github.com/MoneroOcean/xmrig.git
-        MINER_GIT_BRANCH: master
-        MINER_FOLDER: xmrig
-        MINER_EXE: xmrig
-        MINER_CONFIG: cmake .
+#  xmrig-amd:
+#    volumes:
+#      - .:/host
+#    image: xmrig-amd
+#    container_name: xmrig-amd
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/xmrig/xmrig-amd.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: xmrig-amd
+#        MINER_EXE: xmrig-amd
+#        MINER_CONFIG: cmake .
+#  xmrig-MoneroOcean:
+#    volumes:
+#      - .:/host
+#    image: xmrig-mo
+#    container_name: xmrig-mo
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/MoneroOcean/xmrig.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: xmrig
+#        MINER_EXE: xmrig
+#        MINER_CONFIG: cmake .
