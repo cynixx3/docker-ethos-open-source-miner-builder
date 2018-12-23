@@ -11,12 +11,12 @@ services:
     build:
       context: .
       args:
-        - MINER_GIT_URL=https://github.com/tpruvot/ccminer.git
-        - MINER_GIT_BRANCH=linux
-        - MINER_FOLDER=ccminer
-        - MINER_EXE=ccminer
-        - MINER_GEN="./autogen.sh"
-        - MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
+        MINER_GIT_URL: https://github.com/tpruvot/ccminer.git
+        MINER_GIT_BRANCH: linux
+        MINER_FOLDER: ccminer
+        MINER_EXE: ccminer
+        MINER_GEN: ./autogen.sh
+        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
 #  klaust-ccminer:
 #    volumes:
 #      - .:/host
@@ -25,12 +25,12 @@ services:
 #    build:
 #      context: .
 #      args:
-#        - MINER_GIT_URL=https://github.com/KlausT/ccminer.git
-#        - MINER_GIT_BRANCH=linux
-#        - MINER_FOLDER=klaust-miner
-#        - MINER_EXE=ccminer
-#        - MINER_GEN="./autogen.sh"
-#        - MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
+#        MINER_GIT_URL: https://github.com/KlausT/ccminer.git
+#        MINER_GIT_BRANCH: linux
+#        MINER_FOLDER: klaust-miner
+#        MINER_EXE: ccminer
+#        MINER_GEN: ./autogen.sh
+#        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
 #  nevermore-ccminer:
 #    volumes:
 #      - .:/host
@@ -39,12 +39,12 @@ services:
 #    build:
 #      context: .
 #      args:
-#        - MINER_GIT_URL=https://github.com/brian112358/nevermore-miner.git
-#        - MINER_GIT_BRANCH=linux
-#        - MINER_FOLDER=nevermore-miner
-#        - MINER_EXE=ccminer
-#        - MINER_GEN="./autogen.sh"
-#        - MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
+#        MINER_GIT_URL: https://github.com/brian112358/nevermore-miner.git
+#        MINER_GIT_BRANCH: linux
+#        MINER_FOLDER: nevermore-miner
+#        MINER_EXE: ccminer
+#        MINER_GEN: ./autogen.sh
+#        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
 #  zcoin-ccminer:
 #    volumes:
 #      - .:/host
@@ -53,12 +53,12 @@ services:
 #    build:
 #      context: .
 #      args:
-#        - MINER_GIT_URL=https://github.com/zcoinofficial/ccminer.git
-#        - MINER_GIT_BRANCH=master
-#        - MINER_FOLDER=ccminer
-#        - MINER_EXE=ccminer
-#        - MINER_GEN="./autogen.sh"
-#        - MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
+#        MINER_GIT_URL: https://github.com/zcoinofficial/ccminer.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: ccminer
+#        MINER_EXE: ccminer
+#        MINER_GEN: ./autogen.sh
+#        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
   ethminer:
     volumes:
       - .:/host
@@ -67,11 +67,11 @@ services:
     build:
       context: .
       args:
-        - MINER_GIT_URL=https://github.com/ethereum-mining/ethminer.git
-        - MINER_GIT_BRANCH=master
-        - MINER_FOLDER=ethminer
-        - MINER_EXE=ethminer/ethminer
-        - MINER_CONFIG="cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build ."
+        MINER_GIT_URL: https://github.com/ethereum-mining/ethminer.git
+        MINER_GIT_BRANCH: master
+        MINER_FOLDER: ethminer
+        MINER_EXE: ethminer/ethminer
+        MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
 #  progpowminer:
 #    volumes:
 #      - .:/host
@@ -80,11 +80,11 @@ services:
 #    build:
 #      context: .
 #      args:
-#        - MINER_GIT_URL=https://github.com/ifdefelse/ProgPOW.git
-#        - MINER_GIT_BRANCH=master
-#        - MINER_FOLDER=ProgPOW
-#        - MINER_EXE=ethminer/ethminer
-#        - MINER_CONFIG="cmake -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DETHASHCL=OFF -DETHASHCUDA=ON -DETHSTRATUM=ON --build ."
+#        MINER_GIT_URL: https://github.com/ifdefelse/ProgPOW.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: ProgPOW
+#        MINER_EXE: ethminer/ethminer
+#        MINER_CONFIG: cmake -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DETHASHCL=OFF -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
   sgminer:
     volumes:
       - .:/host
@@ -93,12 +93,12 @@ services:
     build:
       context: .
       args:
-        - MINER_GIT_URL=https://github.com/tpruvot/sgminer.git
-        - MINER_GIT_BRANCH=ethash
-        - MINER_FOLDER=sgminer
-        - MINER_EXE=sgminer
-        - MINER_GEN="autoreconf -i"
-        - MINER_CONFIG="./configure"
+        MINER_GIT_URL: https://github.com/tpruvot/sgminer.git
+        MINER_GIT_BRANCH: ethash
+        MINER_FOLDER: sgminer
+        MINER_EXE: sgminer
+        MINER_GEN: echo hi;automake --add-missing
+        MINER_CONFIG: ./configure
 #  avermore:
 #    volumes:
 #      - .:/host
@@ -107,12 +107,12 @@ services:
 #    build:
 #      context: .
 #      args:
-#        - MINER_GIT_URL=https://github.com/brian112358/avermore-miner.git
-#        - MINER_GIT_BRANCH=ethash
-#        - MINER_FOLDER=avermore-miner
-#        - MINER_EXE=sgminer
-#        - MINER_GEN="autoreconf -i"
-#        - MINER_CONFIG="./configure"
+#        MINER_GIT_URL: https://github.com/brian112358/avermore-miner.git
+#        MINER_GIT_BRANCH: ethash
+#        MINER_FOLDER: avermore-miner
+#        MINER_EXE: sgminer
+#        MINER_GEN: autoreconf -i
+#        MINER_CONFIG: ./configure
   xmr-stak:
     volumes:
       - .:/host
@@ -121,11 +121,11 @@ services:
     build:
       context: .
       args:
-        - MINER_GIT_URL=https://github.com/fireice-uk/xmr-stak.git
-        - MINER_GIT_BRANCH=master
-        - MINER_FOLDER=xmr-stak
-        - MINER_EXE="bin/xmr-stak bin/libxmrstak_cuda_backend.so bin/libxmrstak_opencl_backend.so"
-        - MINER_CONFIG="cmake -DXMR-STAK_COMPILE=generic -DCPU_ENABLE=ON -DCMAKE_LINK_STATIC=ON -DCUDA_ENABLE=ON -DOpenCL_ENABLE=ON --build ."
+        MINER_GIT_URL: https://github.com/fireice-uk/xmr-stak.git
+        MINER_GIT_BRANCH: master
+        MINER_FOLDER: xmr-stak
+        MINER_EXE: bin/xmr-stak bin/libxmrstak_cuda_backend.so bin/libxmrstak_opencl_backend.so
+        MINER_CONFIG: cmake -DXMR-STAK_COMPILE=generic -DCPU_ENABLE=ON -DCMAKE_LINK_STATIC=ON -DCUDA_ENABLE=ON -DOpenCL_ENABLE=ON --build .
   xmrig-amd:
     volumes:
       - .:/host
@@ -134,8 +134,21 @@ services:
     build:
       context: .
       args:
-        - MINER_GIT_URL=https://github.com/xmrig/xmrig-amd.git
-        - MINER_GIT_BRANCH=master
-        - MINER_FOLDER=xmrig-amd
-        - MINER_EXE="xmrig-amd"
-        - MINER_CONFIG="cmake ."
+        MINER_GIT_URL: https://github.com/xmrig/xmrig-amd.git
+        MINER_GIT_BRANCH: master
+        MINER_FOLDER: xmrig-amd
+        MINER_EXE: xmrig-amd
+        MINER_CONFIG: cmake .
+  xmrig-MoneroOcean:
+    volumes:
+      - .:/host
+    image: xmrig-mo
+    container_name: xmrig-mo
+    build:
+      context: .
+      args:
+        MINER_GIT_URL: https://github.com/MoneroOcean/xmrig.git
+        MINER_GIT_BRANCH: master
+        MINER_FOLDER: xmrig
+        MINER_EXE: xmrig
+        MINER_CONFIG: cmake .

@@ -91,12 +91,12 @@ WORKDIR /build/$MINER_FOLDER
 RUN if [ -f .gitmodules ] ; then git submodule update --init ; fi
 
 #* for ccminer and sgminer compatability
-RUN $MINER_GEN
+RUN ["sh", "-xc", "$MINER_GEN"]
 
 RUN \
 #* for ccminer compatability
     CUDA_CFLAGS="-O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES" CXXFLAGS='-O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16' \
-    $MINER_CONFIG
+    sh -xc '$MINER_CONFIG'
 
 RUN printf "#!/bin/bash\n\
 git pull\n\
