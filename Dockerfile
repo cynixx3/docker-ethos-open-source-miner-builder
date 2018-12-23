@@ -23,12 +23,20 @@ RUN apt-get -y update \
 
 WORKDIR /build
 
-#* CCMiner
+#* for docker-compose
+ARG MINER_GIT_URL
+ARG MINER_GIT_BRANCH
+ARG MINER_FOLDER
+ARG MINER_EXE
+ARG MINER_GEN
+ARG MINER_CONFIG
+
+#* CCMiner (setting the variables above)
 ARG MINER_GIT_URL=https://github.com/tpruvot/ccminer.git
 ARG MINER_GIT_BRANCH=linux
 ARG MINER_FOLDER=ccminer
 ARG MINER_EXE=ccminer
-ARG MINER_GEN="./autogen.sh"
+ARG MINER_GEN=./autogen.sh
 ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
 
 #* CCMiner forks (duplicate values above omitted below, so just uncomment both sections)
@@ -47,6 +55,11 @@ ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
 #ARG MINER_FOLDER=ethminer
 #ARG MINER_EXE=ethminer/ethminer
 #ARG MINER_CONFIG="cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build ."
+
+#* Energi miner (ethminer fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/energicryptocurrency/energiminer.git
+#ARG MINER_FOLDER=energiminer
+#ARG MINER_EXE=energiminer/energiminer
 
 #* ProgPOW (ethminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/ifdefelse/ProgPOW.git
@@ -77,13 +90,13 @@ ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
 #ARG MINER_GIT_URL=https://github.com/xmrig/xmrig-amd.git
 #ARG MINER_GIT_BRANCH=master
 #ARG MINER_FOLDER=xmrig-amd
-#ARG MINER_EXE="xmrig-amd"
+#ARG MINER_EXE=xmrig-amd
 #ARG MINER_CONFIG="cmake ."
 
 #* xmrig Monero Ocean (xmrig-amd fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/MoneroOcean/xmrig.git
 #ARG MINER_FOLDER=xmrig
-#ARG MINER_EXE="xmrig"
+#ARG MINER_EXE=xmrig
 
 RUN git clone $MINER_GIT_URL --branch $MINER_GIT_BRANCH --single-branch
 
@@ -91,12 +104,12 @@ WORKDIR /build/$MINER_FOLDER
 RUN if [ -f .gitmodules ] ; then git submodule update --init ; fi
 
 #* for ccminer and sgminer compatability
-RUN ["sh", "-xc", "$MINER_GEN"]
+RUN $MINER_GEN
 
 RUN \
-#* for ccminer compatability
-    CUDA_CFLAGS="-O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES" CXXFLAGS='-O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16' \
-    sh -xc '$MINER_CONFIG'
+#* for ccminer compatability (-std=c++0x for energiminer)
+    CUDA_CFLAGS="-O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES" CXXFLAGS="-O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16i -std=c++0x" \
+    $MINER_CONFIG
 
 RUN printf "#!/bin/bash\n\
 git pull\n\

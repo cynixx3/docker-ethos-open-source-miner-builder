@@ -72,6 +72,19 @@ services:
         MINER_FOLDER: ethminer
         MINER_EXE: ethminer/ethminer
         MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
+  energiminer:
+    volumes:
+      - .:/host
+    image: energiminer
+    container_name: energipowminer
+    build:
+      context: .
+      args:
+        MINER_GIT_URL: https://github.com/energicryptocurrency/energiminer.git
+        MINER_GIT_BRANCH: master
+        MINER_FOLDER: energiminer
+        MINER_EXE: energiminer/energiminer
+        MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
 #  progpowminer:
 #    volumes:
 #      - .:/host
