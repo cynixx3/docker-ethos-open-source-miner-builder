@@ -141,6 +141,18 @@ services:
         MINER_EXE: sgminer
         MINER_GEN: autoreconf -i
         MINER_CONFIG: ./configure
+#  silentarmy:
+#    volumes:
+#      - .:/host
+#    image: silentarmy
+#    container_name: silentarmy
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/mbevand/silentarmy.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: silentarmy
+#        MINER_EXE: silentarmy
   xmr-stak:
     volumes:
       - .:/host

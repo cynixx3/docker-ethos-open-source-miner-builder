@@ -101,6 +101,12 @@ ARG MINER_CONFIG
 #ARG MINER_GIT_BRANCH=master
 #ARG MINER_FOLDER=avermore-miner
 
+#* SilentArmy
+#ARG MINER_GIT_URL=https://github.com/mbevand/silentarmy.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=silentarmy
+#ARG MINER_EXE=silentarmy
+
 #* XMR-Stak
 #ARG MINER_GIT_URL=https://github.com/fireice-uk/xmr-stak.git
 #ARG MINER_GIT_BRANCH=master
