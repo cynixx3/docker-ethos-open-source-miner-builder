@@ -59,6 +59,18 @@ services:
 #        MINER_EXE: ccminer
 #        MINER_GEN: ./autogen.sh
 #        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
+#  cuckoo:
+#    volumes:
+#      - .:/host
+#    image: cuckoo
+#    container_name: cuckoo
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/tromp/cuckoo.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: cuckoo/src
+#        MINER_EXE: cuckoo/lean19x1 cuckoo/mean29x4 cuckoo/simple19
 #  dagger-miner:
 #    volumes:
 #      - .:/host

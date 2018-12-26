@@ -60,6 +60,12 @@ ARG MINER_CONFIG
 #ARG MINER_GIT_URL=https://github.com/zcoinofficial/ccminer.git
 #ARG MINER_GIT_BRANCH=master
 
+#* Cuckoo
+#ARG MINER_GIT_URL=https://github.com/tromp/cuckoo.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=cuckoo/src
+#ARG MINER_EXE="cuckoo/lean19x1 cuckoo/mean29x4 cuckoo/simple19"
+
 #* Dagger GPU miner (ccminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/XDagger/DaggerGpuMiner.git
 #ARG MINER_GIT_BRANCH=master
