@@ -18,9 +18,15 @@ RUN apt-get -y update \
 #* for ethminer
         cmake mesa-common-dev \
 #* for xmr-stak
-         libhwloc-dev libmicrohttpd-dev ocl-icd-opencl-dev opencl-headers \
+        libhwloc-dev libmicrohttpd-dev ocl-icd-opencl-dev opencl-headers \
 #* for xmrig-amd
-         libuv1-dev \
+        libuv1-dev \
+#* for grin
+        clang curl libncurses5-dev libncursesw5-dev zlib1g-dev \
+&&  curl https://sh.rustup.rs -o rustup.sh \
+&&  chmod +x rustup.sh \
+&&  ./rustup.sh -y \
+&&  mv $HOME/.cargo/bin/* /usr/local/bin/ \
 #* for energiminer
 &&  printf "deb http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main \n#deb-src http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu xenial main \n" >> /etc/apt/sources.list \
 &&  DEBIAN_FRONTEND=noninteractive apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 60C317803A41BA51845E371A1E9377A2BA9EF27F \
@@ -60,12 +66,6 @@ ARG MINER_CONFIG
 #ARG MINER_GIT_URL=https://github.com/zcoinofficial/ccminer.git
 #ARG MINER_GIT_BRANCH=master
 
-#* Cuckoo
-#ARG MINER_GIT_URL=https://github.com/tromp/cuckoo.git
-#ARG MINER_GIT_BRANCH=master
-#ARG MINER_FOLDER=cuckoo/src
-#ARG MINER_EXE="cuckoo/lean19x1 cuckoo/mean29x4 cuckoo/simple19"
-
 #* Dagger GPU miner (ccminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/XDagger/DaggerGpuMiner.git
 #ARG MINER_GIT_BRANCH=master
@@ -91,6 +91,13 @@ ARG MINER_CONFIG
 #ARG MINER_FOLDER=ProgPOW
 #ARG MINER_KERNELS
 #ARG MINER_CONFIG="cmake -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DETHASHCL=OFF -DETHASHCUDA=ON -DETHSTRATUM=ON --build ."
+
+#* Grin
+#ARG MINER_GIT_URL=https://github.com/mimblewimble/grin.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=grin
+#ARG MINER_EXE=target/release/grin
+#ARG MINER_GEN="cargo build --release"
 
 #* SGminer-GM (parent)
 #ARG MINER_GIT_URL=https://github.com/tpruvot/sgminer.git

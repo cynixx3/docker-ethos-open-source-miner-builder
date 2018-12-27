@@ -59,18 +59,6 @@ services:
 #        MINER_EXE: ccminer
 #        MINER_GEN: ./autogen.sh
 #        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
-#  cuckoo:
-#    volumes:
-#      - .:/host
-#    image: cuckoo
-#    container_name: cuckoo
-#    build:
-#      context: .
-#      args:
-#        MINER_GIT_URL: https://github.com/tromp/cuckoo.git
-#        MINER_GIT_BRANCH: master
-#        MINER_FOLDER: cuckoo/src
-#        MINER_EXE: cuckoo/lean19x1 cuckoo/mean29x4 cuckoo/simple19
 #  dagger-miner:
 #    volumes:
 #      - .:/host
@@ -124,6 +112,19 @@ services:
         MINER_FOLDER: ProgPOW
         MINER_EXE: ethminer/ethminer
         MINER_CONFIG: cmake -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DETHASHCL=OFF -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
+#  grin:
+#    volumes:
+#      - .:/host
+#    image: grin
+#    container_name: grin
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/mimblewimble/grin.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: grin
+#        MINER_EXE: target/release/grin
+#        MINER_GEN: cargo build --release
   sgminer:
     volumes:
       - .:/host
