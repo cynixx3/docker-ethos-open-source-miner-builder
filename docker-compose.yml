@@ -153,6 +153,19 @@ services:
 #        MINER_FOLDER: grin
 #        MINER_EXE: target/release/grin
 #        MINER_GEN: cargo build --release
+#  nheqminer-amd:
+#    volumes:
+#      - .:/host
+#    image: nheqminer-amd
+#    container_name: nheqminer-amd
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/nicehash/nheqminer.git
+#        MINER_GIT_BRANCH: Linux
+#        MINER_FOLDER: nheqminer/Linux_cmake/nheqminer_AMD
+#        MINER_EXE: nheqminer_AMD
+#        MINER_CONFIG: cmake . -DOPENCL_LIBRARY=/usr/lib/x86_64-linux-gnu/libOpenCL.so -DOPENCL_INCLUDE_DIRECTORY=/opt/AMDAPPSDK-3.0/include
 #  nheqminer-cuda:
 #    volumes:
 #      - .:/host
@@ -162,6 +175,33 @@ services:
 #      context: .
 #      args:
 #        MINER_GIT_URL: https://github.com/nicehash/nheqminer.git
+#        MINER_GIT_BRANCH: Linux
+#        MINER_FOLDER: nheqminer/Linux_cmake/nheqminer_cuda_tromp
+#        MINER_EXE: nheqminer_cuda_tromp
+#        MINER_GEN: cd ../../cpu_xenoncat/Linux/asm/ ; ./assemble.sh
+#        MINER_CONFIG: cmake .
+#  nheqminer-veruscoin-amd:
+#    volumes:
+#      - .:/host
+#    image: nheqminer-veruscoin-amd
+#    container_name: nheqminer-veruscoin-amd
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/veruscoin/nheqminer.git
+#        MINER_GIT_BRANCH: Linux
+#        MINER_FOLDER: nheqminer/Linux_cmake/nheqminer_AMD
+#        MINER_EXE: nheqminer_AMD
+#        MINER_CONFIG: cmake . -DOPENCL_LIBRARY=/usr/lib/x86_64-linux-gnu/libOpenCL.so -DOPENCL_INCLUDE_DIRECTORY=/opt/AMDAPPSDK-3.0/include
+#  nheqminer-veruscoin-cuda:
+#    volumes:
+#      - .:/host
+#    image: nheqminer-veruscoin-cuda
+#    container_name: nheqminer-veruscoin-cuda
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/veruscoin/nheqminer.git
 #        MINER_GIT_BRANCH: Linux
 #        MINER_FOLDER: nheqminer/Linux_cmake/nheqminer_cuda_tromp
 #        MINER_EXE: nheqminer_cuda_tromp

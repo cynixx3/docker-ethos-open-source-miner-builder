@@ -119,6 +119,16 @@ ARG MINER_CONFIG
 #ARG MINER_EXE=target/release/grin
 #ARG MINER_GEN="cargo build --release"
 
+#* Nheqminer AMD (parent)
+#ARG MINER_GIT_URL=https://github.com/nicehash/nheqminer.git
+#ARG MINER_GIT_BRANCH=Linux
+#ARG MINER_FOLDER=nheqminer/Linux_cmake/nheqminer_AMD
+#ARG MINER_EXE=nheqminer_AMD
+#ARG MINER_CONFIG="cmake . -DOPENCL_LIBRARY=/usr/lib/x86_64-linux-gnu/libOpenCL.so -DOPENCL_INCLUDE_DIRECTORY=/opt/AMDAPPSDK-3.0/include"
+
+#* Nheqminer VerusCoin AMD (nheqminer AMD fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/veruscoin/nheqminer.git
+
 #* Nheqminer Cuda Tromp (parent)
 #ARG MINER_GIT_URL=https://github.com/nicehash/nheqminer.git
 #ARG MINER_GIT_BRANCH=Linux
@@ -126,6 +136,10 @@ ARG MINER_CONFIG
 #ARG MINER_EXE=nheqminer_cuda_tromp
 #ARG MINER_GEN="cd ../../cpu_xenoncat/Linux/asm/ ;./assemble.sh"
 #ARG MINER_CONFIG="cmake COMPUTE=50 ."
+
+#* Nheqminer VerusCoin Cuda Tromp (nheqminer Cuda Tromp fork, duplicate values above omitted below)
+
+#ARG MINER_GIT_URL=https://github.com/veruscoin/nheqminer.git
 
 #* Nsgminer
 #ARG MINER_GIT_URL=https://github.com/ghostlander/nsgminer.git
