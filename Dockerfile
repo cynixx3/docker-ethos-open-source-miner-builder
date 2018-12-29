@@ -104,6 +104,10 @@ ARG MINER_CONFIG
 #ARG MINER_KERNELS
 #ARG MINER_CONFIG="cmake -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DETHASHCL=OFF -DETHASHCUDA=ON -DETHSTRATUM=ON --build ."
 
+#* UBIQminer (ethminer fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/ubiq/ubqminer.git
+#ARG MINER_FOLDER=ubqminer
+
 #* CGMiner
 #ARG MINER_GIT_URL=https://github.com/ckolivas/cgminer.git
 #ARG MINER_GIT_BRANCH=master

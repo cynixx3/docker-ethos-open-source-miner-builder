@@ -140,6 +140,20 @@ services:
         MINER_FOLDER: ProgPOW
         MINER_EXE: ethminer/ethminer
         MINER_CONFIG: cmake -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DETHASHCL=OFF -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
+#  ubiqminer:
+#    volumes:
+#      - .:/host
+#    image: ubiqminer
+#    container_name: ubiqminer
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/ubiq/ubiqminer.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: ubiqminer
+#        MINER_EXE: ethminer/ethminer
+#        MINER_KERNELS: libethash-cl/kernels/bin/
+#        MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
 #  grin:
 #    volumes:
 #      - .:/host
