@@ -92,6 +92,14 @@ ARG MINER_CONFIG
 #ARG MINER_KERNELS
 #ARG MINER_CONFIG="cmake -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DETHASHCL=OFF -DETHASHCUDA=ON -DETHSTRATUM=ON --build ."
 
+#* CGMiner
+#ARG MINER_GIT_URL=https://github.com/ckolivas/cgminer.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=cgminer
+#ARG MINER_EXE=cgminer
+#ARG MINER_GEN=./autogen.sh
+#ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
+
 #* Grin
 #ARG MINER_GIT_URL=https://github.com/mimblewimble/grin.git
 #ARG MINER_GIT_BRANCH=master

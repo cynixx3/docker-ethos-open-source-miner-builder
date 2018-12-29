@@ -59,6 +59,20 @@ services:
 #        MINER_EXE: ccminer
 #        MINER_GEN: ./autogen.sh
 #        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
+#  cgminer:
+#    volumes:
+#      - .:/host
+#    image: cgminer
+#    container_name: cgminer
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/ckolivas/cgminer.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: cgminer
+#        MINER_EXE: cgminer
+#        MINER_GEN: ./autogen.sh
+#        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
 #  dagger-miner:
 #    volumes:
 #      - .:/host
