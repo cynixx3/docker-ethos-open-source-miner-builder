@@ -142,8 +142,14 @@ ARG MINER_CONFIG
 #ARG MINER_CONFIG="cmake COMPUTE=50 ."
 
 #* Nheqminer VerusCoin Cuda Tromp (nheqminer Cuda Tromp fork, duplicate values above omitted below)
-
 #ARG MINER_GIT_URL=https://github.com/veruscoin/nheqminer.git
+
+#* Nheqminer Bitcoin Gold
+#ARG MINER_GIT_URL=https://github.com/martin-key/nheqminer-bitcoin-gold.git
+#ARG MINER_GIT_BRANCH=kost
+#ARG MINER_FOLDER=nheqminer-bitcoin-gold/nheqminer
+#ARG MINER_EXE=nheqminer
+#ARG MINER_CONFIG="cmake -DXENON=1 -DMARCH=-m64 ."
 
 #* Nsgminer
 #ARG MINER_GIT_URL=https://github.com/ghostlander/nsgminer.git
@@ -212,7 +218,7 @@ ARG MINER_CONFIG
 #ARG MINER_FOLDER=xmrig
 #ARG MINER_EXE=xmrig
 
-RUN git clone $MINER_GIT_URL --branch $MINER_GIT_BRANCH --single-branch
+RUN git clone $MINER_GIT_URL --branch $MINER_GIT_BRANCH --single-branch --recursive
 
 WORKDIR /build/$MINER_FOLDER
 RUN if [ -f .gitmodules ] ; then git submodule update --init ; fi

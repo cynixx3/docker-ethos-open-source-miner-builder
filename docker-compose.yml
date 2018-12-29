@@ -221,6 +221,19 @@ services:
 #        MINER_EXE: nheqminer_cuda_tromp
 #        MINER_GEN: cd ../../cpu_xenoncat/Linux/asm/ ; ./assemble.sh
 #        MINER_CONFIG: cmake .
+#  nheqminer-bitcoin-gold:
+#    volumes:
+#      - .:/host
+#    image: nheqminer-bitcoin-gold
+#    container_name: nheqminer-bitcoin-gold
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/martin-key/nheqminer-bitcoin-gold.git
+#        MINER_GIT_BRANCH: kost
+#        MINER_FOLDER: nheqminer-bitcoin-gold/nheqminer
+#        MINER_EXE: nheqminer
+#        MINER_CONFIG: cmake -DXENON=1 -DMARCH=-m64 .
 #  nsgminer:
 #    volumes:
 #      - .:/host
