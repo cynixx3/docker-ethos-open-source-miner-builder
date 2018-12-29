@@ -250,6 +250,21 @@ services:
         MINER_EXE: sgminer
         MINER_GEN: autoreconf -i
         MINER_CONFIG: ./configure
+#  fancyix:
+#    volumes:
+#      - .:/host
+#    image: fancyix
+#    container_name: fancyix
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/fancyIX/sgminer-phi2-branch.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: sgminer-phi2-branch
+#        MINER_EXE: sgminer
+#        MINER_KERNELS: kernel
+#        MINER_GEN: autoreconf -i
+#        MINER_CONFIG: ./configure
 #  silentarmy:
 #    volumes:
 #      - .:/host

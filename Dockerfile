@@ -163,6 +163,11 @@ ARG MINER_CONFIG
 #ARG MINER_GIT_BRANCH=master
 #ARG MINER_FOLDER=avermore-miner
 
+#* FancyIX (sgminer fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/fancyIX/sgminer-phi2-branch.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=sgminer-phi2-branch
+
 #* SilentArmy (parent)
 #ARG MINER_GIT_URL=https://github.com/mbevand/silentarmy.git
 #ARG MINER_GIT_BRANCH=master
