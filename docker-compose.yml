@@ -153,6 +153,20 @@ services:
 #        MINER_FOLDER: grin
 #        MINER_EXE: target/release/grin
 #        MINER_GEN: cargo build --release
+#  nheqminer-cuda:
+#    volumes:
+#      - .:/host
+#    image: nheqminer-cuda
+#    container_name: nheqminer-cuda
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/nicehash/nheqminer.git
+#        MINER_GIT_BRANCH: Linux
+#        MINER_FOLDER: nheqminer/Linux_cmake/nheqminer_cuda_tromp
+#        MINER_EXE: nheqminer_cuda_tromp
+#        MINER_GEN: cd ../../cpu_xenoncat/Linux/asm/ ; ./assemble.sh
+#        MINER_CONFIG: cmake .
   sgminer:
     volumes:
       - .:/host
@@ -219,6 +233,19 @@ services:
         MINER_FOLDER: xmr-stak
         MINER_EXE: bin/xmr-stak bin/libxmrstak_cuda_backend.so bin/libxmrstak_opencl_backend.so
         MINER_CONFIG: cmake -DXMR-STAK_COMPILE=generic -DCPU_ENABLE=ON -DCMAKE_LINK_STATIC=ON -DCUDA_ENABLE=ON -DOpenCL_ENABLE=ON --build .
+#  xmr-aeon-stak:
+#    volumes:
+#      - .:/host
+#    image: xmr-aeon-stak
+#    container_name: xmr-aeon-stak
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/IndeedMiners/xmr-aeon-stak.git
+#        MINER_GIT_BRANCH: dev
+#        MINER_FOLDER: xmr-aeon-stak
+#        MINER_EXE: bin/xmr-stak bin/libxmrstak_cuda_backend.so bin/libxmrstak_opencl_backend.so
+#        MINER_CONFIG: cmake -DXMR-STAK_COMPILE=generic -DCPU_ENABLE=ON -DCMAKE_LINK_STATIC=ON -DCUDA_ENABLE=ON -DOpenCL_ENABLE=ON --build .
 #  xmrig-amd:
 #    volumes:
 #      - .:/host

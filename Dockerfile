@@ -19,6 +19,8 @@ RUN apt-get -y update \
         libboost-dev libboost-system-dev \
 #* for ethminer
         cmake mesa-common-dev \
+#* for nheqminer
+        libboost-all-dev \
 #* for xmr-stak
         libhwloc-dev libmicrohttpd-dev ocl-icd-opencl-dev opencl-headers \
 #* for xmrig-amd
@@ -117,6 +119,14 @@ ARG MINER_CONFIG
 #ARG MINER_EXE=target/release/grin
 #ARG MINER_GEN="cargo build --release"
 
+#* Nheqminer Cuda Tromp (parent)
+#ARG MINER_GIT_URL=https://github.com/nicehash/nheqminer.git
+#ARG MINER_GIT_BRANCH=Linux
+#ARG MINER_FOLDER=nheqminer/Linux_cmake/nheqminer_cuda_tromp
+#ARG MINER_EXE=nheqminer_cuda_tromp
+#ARG MINER_GEN="cd ../../cpu_xenoncat/Linux/asm/ ;./assemble.sh"
+#ARG MINER_CONFIG="cmake COMPUTE=50 ."
+
 #* SGminer-GM (parent)
 #ARG MINER_GIT_URL=https://github.com/tpruvot/sgminer.git
 #ARG MINER_GIT_BRANCH=ethash
@@ -147,6 +157,11 @@ ARG MINER_CONFIG
 #ARG MINER_FOLDER=xmr-stak
 #ARG MINER_EXE="bin/xmr-stak bin/libxmrstak_cuda_backend.so bin/libxmrstak_opencl_backend.so"
 #ARG MINER_CONFIG="cmake -DXMR-STAK_COMPILE=generic -DCPU_ENABLE=ON -DCMAKE_LINK_STATIC=ON -DCUDA_ENABLE=ON -DOpenCL_ENABLE=ON --build ."
+
+#* XMR-aeon-Stak (xmr-stak fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/IndeedMiners/xmr-aeon-stak.git
+#ARG MINER_GIT_BRANCH=dev
+#ARG MINER_FOLDER=xmr-aeon-stak
 
 #* xmrig-amd (parent)
 #ARG MINER_GIT_URL=https://github.com/xmrig/xmrig-amd.git
@@ -184,6 +199,8 @@ RUN printf "#!/bin/bash\n\
 git pull \n\
 #* for ccminer compatability \n\
 if [ -f Makefile.am ] ; then sed -E 's/^#(nvcc_ARCH.*$)/\1/' -i Makefile.am ; fi \n\
+#* for nheqminer compatability \n\
+if [ -f CMakeLists.txt ] ; then sed -E 's/ -gencode arch=compute_20,code=sm_21;//' -i CMakeLists.txt ; fi \n\
 make \n\
 strip $MINER_EXE \n\
 if [ ! -d /host/$MINER_FOLDER ] ; then mkdir /host/$(echo $MINER_FOLDER | cut -d / -f 1) ; fi \n\
