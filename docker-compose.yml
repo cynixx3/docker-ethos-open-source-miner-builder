@@ -3,6 +3,20 @@ version: '2.0'
 # binaries will be automatically copied to the directory this is run in
 # building more than one of an exe will result in it being overwritten. 
 services:
+#  bfgminer:
+#    volumes:
+#      - .:/host
+#    image: bfgminer
+#    container_name: bfgminer
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/luke-jr/bfgminer.git
+#        MINER_GIT_BRANCH: linux
+#        MINER_FOLDER: bfgminer
+#        MINER_EXE: bfgminer
+#        MINER_GEN: ./autogen.sh
+#        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
   tpruvot-ccminer:
     volumes:
       - .:/host

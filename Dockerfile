@@ -11,6 +11,8 @@ RUN apt-get -y update \
         automake \
         git \
         libssl-dev \
+#* for bfgminer
+        libevent-dev libjansson-dev libsensors4-dev uthash-dev \
 #* for ccminer
         libcurl4-openssl-dev \
 #* for DaggerGPUMiner
@@ -47,6 +49,14 @@ ARG MINER_GEN
 ARG MINER_CONFIG
 
 #* Uncomment a parent (and fork) section below to build a single miner 
+#* BFGMiner
+#ARG MINER_GIT_URL=https://github.com/luke-jr/bfgminer.git
+#ARG MINER_GIT_BRANCH=bfgminer
+#ARG MINER_FOLDER=bfgminer
+#ARG MINER_EXE=bfgminer
+#ARG MINER_GEN=./autogen.sh
+#ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
+
 #* CCMiner (parent)
 #ARG MINER_GIT_URL=https://github.com/tpruvot/ccminer.git
 #ARG MINER_GIT_BRANCH=linux
