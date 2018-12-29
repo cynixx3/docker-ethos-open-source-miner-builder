@@ -167,6 +167,20 @@ services:
 #        MINER_EXE: nheqminer_cuda_tromp
 #        MINER_GEN: cd ../../cpu_xenoncat/Linux/asm/ ; ./assemble.sh
 #        MINER_CONFIG: cmake .
+#  nsgminer:
+#    volumes:
+#      - .:/host
+#    image: nsgminer
+#    container_name: nsgminer
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/ghostlander/nsgminer.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: nsgminer
+#        MINER_EXE: nsgminer
+#        MINER_GEN: ./autogen.sh
+#        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
   sgminer:
     volumes:
       - .:/host

@@ -127,6 +127,14 @@ ARG MINER_CONFIG
 #ARG MINER_GEN="cd ../../cpu_xenoncat/Linux/asm/ ;./assemble.sh"
 #ARG MINER_CONFIG="cmake COMPUTE=50 ."
 
+#* Nsgminer
+#ARG MINER_GIT_URL=https://github.com/ghostlander/nsgminer.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=nsgminer
+#ARG MINER_EXE=nsgminer
+#ARG MINER_GEN=./autogen.sh
+#ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
+
 #* SGminer-GM (parent)
 #ARG MINER_GIT_URL=https://github.com/tpruvot/sgminer.git
 #ARG MINER_GIT_BRANCH=ethash
