@@ -37,7 +37,8 @@ RUN apt-get -y update \
 &&  apt-get update \
 &&  DEBIAN_FRONTEND=noninteractive apt-get -y install \
          gcc-6 g++-6 \
-&&  update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60
+&&  update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 100 --slave /usr/bin/g++ g++ /usr/bin/g++-5 \
+&&  update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6
 
 WORKDIR /build
 
@@ -49,6 +50,10 @@ ARG MINER_EXE
 ARG MINER_KERNELS
 ARG MINER_GEN
 ARG MINER_CONFIG
+ARG extracflags
+ARG extracxxflags
+ARG extracuda_cflags
+ARG CONFIG_CPP
 
 #* Uncomment a parent (and fork) section below to build a single miner 
 #* BFGMiner
@@ -66,6 +71,8 @@ ARG MINER_CONFIG
 #ARG MINER_EXE=ccminer
 #ARG MINER_GEN=./autogen.sh
 #ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
+#ARG extracuda_cflags="-O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES"
+#ARG extracxxflags="-O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16"
 
 #* Klaust (ccminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/KlausT/ccminer.git
@@ -77,6 +84,23 @@ ARG MINER_CONFIG
 #* Zcoin (ccminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/zcoinofficial/ccminer.git
 #ARG MINER_GIT_BRANCH=master
+
+#* CGMiner
+#ARG MINER_GIT_URL=https://github.com/ckolivas/cgminer.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=cgminer
+#ARG MINER_EXE=cgminer
+#ARG MINER_GEN=./autogen.sh
+#ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
+
+#* CUBalloon
+#ARG MINER_GIT_URL=https://github.com/Belgarion/cuballoon.git
+#ARG MINER_FOLDER=cuballoon
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_EXE=cpuminer
+#ARG MINER_GEN=./autogen.sh
+#ARG MINER_CONFIG="./configure --with-crypto --with-curl"
+#ARG extracflags="-O2 -Ofast -flto -fuse-linker-plugin -ftree-loop-if-convert-stores -DUSE_ASM -pg"
 
 #* Dagger GPU miner (ccminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/XDagger/DaggerGpuMiner.git
@@ -97,6 +121,8 @@ ARG MINER_CONFIG
 #ARG MINER_FOLDER=energiminer
 #ARG MINER_KERNELS=libnrghash-cl/kernels/bin
 #ARG MINER_EXE=energiminer/energiminer
+#ARG extracxxflags="-std=c++0x"
+#ARG CONFIG_CPP="update-alternatives --set gcc /usr/bin/gcc-6"
 
 #* ProgPOW (ethminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/ifdefelse/ProgPOW.git
@@ -104,17 +130,9 @@ ARG MINER_CONFIG
 #ARG MINER_KERNELS
 #ARG MINER_CONFIG="cmake -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DETHASHCL=OFF -DETHASHCUDA=ON -DETHSTRATUM=ON --build ."
 
-#* UBIQminer (ethminer fork, duplicate values above omitted below)
+#* UBQminer (ethminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/ubiq/ubqminer.git
 #ARG MINER_FOLDER=ubqminer
-
-#* CGMiner
-#ARG MINER_GIT_URL=https://github.com/ckolivas/cgminer.git
-#ARG MINER_GIT_BRANCH=master
-#ARG MINER_FOLDER=cgminer
-#ARG MINER_EXE=cgminer
-#ARG MINER_GEN=./autogen.sh
-#ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
 
 #* Grin
 #ARG MINER_GIT_URL=https://github.com/mimblewimble/grin.git
@@ -123,26 +141,31 @@ ARG MINER_CONFIG
 #ARG MINER_EXE=target/release/grin
 #ARG MINER_GEN="cargo build --release"
 
-#* Nheqminer AMD (parent)
-#ARG MINER_GIT_URL=https://github.com/nicehash/nheqminer.git
-#ARG MINER_GIT_BRANCH=Linux
-#ARG MINER_FOLDER=nheqminer/Linux_cmake/nheqminer_AMD
-#ARG MINER_EXE=nheqminer_AMD
-#ARG MINER_CONFIG="cmake . -DOPENCL_LIBRARY=/usr/lib/x86_64-linux-gnu/libOpenCL.so -DOPENCL_INCLUDE_DIRECTORY=/opt/AMDAPPSDK-3.0/include"
-
-#* Nheqminer VerusCoin AMD (nheqminer AMD fork, duplicate values above omitted below)
-#ARG MINER_GIT_URL=https://github.com/veruscoin/nheqminer.git
-
-#* Nheqminer Cuda Tromp (parent)
+#* Nheqminer Cuda Tromp Nvidia (parent)
 #ARG MINER_GIT_URL=https://github.com/nicehash/nheqminer.git
 #ARG MINER_GIT_BRANCH=Linux
 #ARG MINER_FOLDER=nheqminer/Linux_cmake/nheqminer_cuda_tromp
 #ARG MINER_EXE=nheqminer_cuda_tromp
-#ARG MINER_GEN="cd ../../cpu_xenoncat/Linux/asm/ ;./assemble.sh"
-#ARG MINER_CONFIG="cmake COMPUTE=50 ."
+#ARG MINER_GEN="cd ../../cpu_xenoncat/Linux/asm ;./assemble.sh"
+#ARG MINER_CONFIG="cmake COMPUTE=30;40;50 ."
 
-#* Nheqminer VerusCoin Cuda Tromp (nheqminer Cuda Tromp fork, duplicate values above omitted below)
+#* Nheqminer VerusCoin Cuda Tromp Nviaia (nheqminer Cuda Tromp fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/veruscoin/nheqminer.git
+
+#* Nheqminer XMP SilentArmy AMD (parent)
+#ARG MINER_GIT_URL=https://github.com/nicehash/nheqminer.git
+#ARG MINER_GIT_BRANCH=Linux
+#ARG MINER_FOLDER=nheqminer/Linux_cmake/nheqminer_AMD
+#ARG MINER_EXE=nheqminer_AMD
+#ARG MINER_KERNELS="../../3rdparty/amd_bins_linux/* ../../3rdparty/amd_silentarmy_kernels/*"
+#ARG MINER_CONFIG="cmake . -DOPENCL_LIBRARY=/usr/lib/x86_64-linux-gnu/libOpenCL.so -DOPENCL_INCLUDE_DIRECTORY=/opt/AMDAPPSDK-3.0/include"
+
+#* Nheqminer VerusCoin AMD (nheqminer AMD fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/veruscoin/nheqminer.git
+#ARG MINER_FOLDER=nheqminer/Linux_cmake/nheqminer_cuda_tromp
+#ARG MINER_EXE=nheqminer_cuda_tromp
+#ARG MINER_GEN="cd ../../cpu_xenoncat/Linux/asm ;./assemble.sh"
+#ARG MINER_CONFIG="cmake ."
 
 #* Nheqminer Bitcoin Gold
 #ARG MINER_GIT_URL=https://github.com/martin-key/nheqminer-bitcoin-gold.git
@@ -165,18 +188,20 @@ ARG MINER_CONFIG
 #ARG MINER_FOLDER=sgminer
 #ARG MINER_EXE=sgminer
 #ARG MINER_KERNELS=kernel
-#ARG MINER_GEN="autoreconf -i"
-#ARG MINER_CONFIG="./configure"
-
-#* Avermore (sgminer fork, duplicate values above omitted below)
-#ARG MINER_GIT_URL=https://github.com/brian112358/avermore-miner.git
-#ARG MINER_GIT_BRANCH=master
-#ARG MINER_FOLDER=avermore-miner
+#ARG MINER_GEN=./autogen.sh
+#ARG MINER_CONFIG=./configure
+#ARG extracflags="-g -O2"
 
 #* FancyIX (sgminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/fancyIX/sgminer-phi2-branch.git
 #ARG MINER_GIT_BRANCH=master
 #ARG MINER_FOLDER=sgminer-phi2-branch
+#ARG MINER_GEN="autoreconf -i"
+
+#* Avermore (sgminer fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/brian112358/avermore-miner.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=avermore-miner
 
 #* SilentArmy (parent)
 #ARG MINER_GIT_URL=https://github.com/mbevand/silentarmy.git
@@ -223,13 +248,14 @@ RUN git clone $MINER_GIT_URL --branch $MINER_GIT_BRANCH --single-branch --recurs
 WORKDIR /build/$MINER_FOLDER
 RUN if [ -f .gitmodules ] ; then git submodule update --init ; fi
 
-#* for ccminer and sgminer compatability
+RUN $CONFIG_CPP
+
 RUN $MINER_GEN
 
 RUN \
-#* for ccminer compatability (-std=c++0x for energiminer)
-    CUDA_CFLAGS="-O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES" \
-    CXXFLAGS="-O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16 -std=c++0x" \
+    CUDA_CFLAGS="$extracuda_cflags" \
+    CXXFLAGS="$extracxxflags" \
+    CFLAGS="$extracflags" \
     $MINER_CONFIG
 
 RUN printf "#!/bin/bash\n\

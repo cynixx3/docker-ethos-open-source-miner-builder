@@ -12,7 +12,7 @@ services:
 #      context: .
 #      args:
 #        MINER_GIT_URL: https://github.com/luke-jr/bfgminer.git
-#        MINER_GIT_BRANCH: linux
+#        MINER_GIT_BRANCH: bfgminer
 #        MINER_FOLDER: bfgminer
 #        MINER_EXE: bfgminer
 #        MINER_GEN: ./autogen.sh
@@ -31,6 +31,8 @@ services:
         MINER_EXE: ccminer
         MINER_GEN: ./autogen.sh
         MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
+        extracuda_cflags: -O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES
+        extracxxflags: -O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16
 #  klaust-ccminer:
 #    volumes:
 #      - .:/host
@@ -45,6 +47,8 @@ services:
 #        MINER_EXE: ccminer
 #        MINER_GEN: ./autogen.sh
 #        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
+#        extracuda_cflags: -O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES
+#        extracxxflags: -O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16
   nevermore-ccminer:
     volumes:
       - .:/host
@@ -59,6 +63,8 @@ services:
         MINER_EXE: ccminer
         MINER_GEN: ./autogen.sh
         MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
+        extracuda_cflags: -O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES
+        extracxxflags: -O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16
 #  zcoin-ccminer:
 #    volumes:
 #      - .:/host
@@ -73,6 +79,8 @@ services:
 #        MINER_EXE: ccminer
 #        MINER_GEN: ./autogen.sh
 #        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
+#        extracuda_cflags: -O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES
+#        extracxxflags: -O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16
 #  cgminer:
 #    volumes:
 #      - .:/host
@@ -87,6 +95,21 @@ services:
 #        MINER_EXE: cgminer
 #        MINER_GEN: ./autogen.sh
 #        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
+#  cuballoon:
+#    volumes:
+#      - .:/host
+#    image: cuballoon
+#    container_name: cuballoon
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/Belgarion/cuballoon.git
+#        MINER_FOLDER: cuballoon
+#        MINER_GIT_BRANCH: master
+#        MINER_EXE: cpuminer
+#        MINER_GEN: ./autogen.sh
+#        MINER_CONFIG: ./configure --with-crypto --with-curl
+#        extracflags: -O2 -Ofast -flto -fuse-linker-plugin -ftree-loop-if-convert-stores -DUSE_ASM -pg
 #  dagger-miner:
 #    volumes:
 #      - .:/host
@@ -127,6 +150,8 @@ services:
 #        MINER_EXE: energiminer/energiminer
 #        MINER_KERNELS: libnrghash-cl/kernels/bin
 #        MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
+#        extracxxflags: -std=c++0x
+#        CONFIG_CPP: update-alternatives --set gcc /usr/bin/gcc-6
   progpowminer:
     volumes:
       - .:/host
@@ -148,9 +173,9 @@ services:
 #    build:
 #      context: .
 #      args:
-#        MINER_GIT_URL: https://github.com/ubiq/ubiqminer.git
+#        MINER_GIT_URL: https://github.com/ubiq/ubqminer.git
 #        MINER_GIT_BRANCH: master
-#        MINER_FOLDER: ubiqminer
+#        MINER_FOLDER: ubqminer
 #        MINER_EXE: ethminer/ethminer
 #        MINER_KERNELS: libethash-cl/kernels/bin/
 #        MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
@@ -263,6 +288,7 @@ services:
         MINER_KERNELS: kernel/
         MINER_GEN: ./autogen.sh
         MINER_CONFIG: ./configure
+        extracflags: -g -O2
   avermore:
     volumes:
       - .:/host
@@ -303,7 +329,7 @@ services:
 #        MINER_GIT_URL: https://github.com/mbevand/silentarmy.git
 #        MINER_GIT_BRANCH: master
 #        MINER_FOLDER: silentarmy
-#        MINER_EXE: silentarmy
+#        MINER_EXE: silentarmy sa-solver
 #  AMDVerusCoin:
 #    volumes:
 #      - .:/host
@@ -367,7 +393,7 @@ services:
 #        MINER_GIT_BRANCH: master
 #        MINER_FOLDER: xmrig-nvidia
 #        MINER_EXE: xmrig-nvidia
-#        MINER_CONFIG: cmake -DCUDA_ARCH="30;50;60" .
+#        MINER_CONFIG: cmake -DCUDA_ARCH=30;50;60 .
 #  xmrig-MoneroOcean:
 #    volumes:
 #      - .:/host
