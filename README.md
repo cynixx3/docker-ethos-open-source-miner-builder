@@ -41,3 +41,8 @@ Note: With either method this docker will overwrite same named files on the host
 Note: Miner folders will likely be root after building, to fix run `sudo chown -R $(whoami).$(whoami) *`
 
 Note: This Dockerfile can build many more miners than ethOS supports. If you choose to use them please be forewarned that ethOS does not support miners that it did not ship with. Features like hash monitor and using the local.conf are highly customized and do not always support miner updates without official releases that patch these features. Learn more here: https://github.com/cynixx3/third-party-miner-installer-for-ethos
+
+---
+Licensing
+
+This is free to use privately. If packaged in a commercial solution please contact cynixx3@gmail.com.

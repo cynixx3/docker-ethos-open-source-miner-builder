@@ -18,7 +18,7 @@ RUN apt-get -y update \
 #* for DaggerGPUMiner
         libboost-dev libboost-system-dev \
 #* for ethminer
-        cmake mesa-common-dev \
+        mesa-common-dev \
 #* for nheqminer
         libboost-all-dev \
 #* for xmr-stak
@@ -38,7 +38,11 @@ RUN apt-get -y update \
 &&  DEBIAN_FRONTEND=noninteractive apt-get -y install \
          gcc-6 g++-6 \
 &&  update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 100 --slave /usr/bin/g++ g++ /usr/bin/g++-5 \
-&&  update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6
+&&  update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6 \
+#* for beam
+&&  update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 70 --slave /usr/bin/g++ g++ /usr/bin/g++-7 \
+&&  curl -O https://cmake.org/files/v3.12/cmake-3.12.0-Linux-x86_64.sh \
+&&  sh cmake-3.12.0-Linux-x86_64.sh --skip-license --prefix=/usr
 
 WORKDIR /build
 
@@ -56,6 +60,15 @@ ARG extracuda_cflags
 ARG CONFIG_CPP
 
 #* Uncomment a parent (and fork) section below to build a single miner 
+#* Beam
+#ARG MINER_GIT_URL=https://github.com/BeamMW/opencl-miner.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=opencl-miner
+#ARG CONFIG_CPP="update-alternatives --set gcc /usr/bin/gcc-7"
+#ARG MINER_EXE=beam-opencl-miner
+#ARG MINER_KERNELS=kernels
+#ARG MINER_GEN="cmake ."
+
 #* BFGMiner
 #ARG MINER_GIT_URL=https://github.com/luke-jr/bfgminer.git
 #ARG MINER_GIT_BRANCH=bfgminer

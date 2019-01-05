@@ -3,6 +3,21 @@ version: '2.0'
 # binaries will be automatically copied to the directory this is run in
 # building more than one of an exe will result in it being overwritten. 
 services:
+#  beam:
+#    volumes:
+#      - .:/host
+#    image: beam
+#    container_name: beam
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/BeamMW/opencl-miner.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: opencl-miner
+#        CONFIG_CPP: update-alternatives --set gcc /usr/bin/gcc-7
+#        MINER_KERNELS: kernels
+#        MINER_EXE: beam-opencl-miner
+#        MINER_GEN: cmake .
 #  bfgminer:
 #    volumes:
 #      - .:/host
