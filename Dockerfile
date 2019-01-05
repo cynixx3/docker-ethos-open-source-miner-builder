@@ -36,7 +36,7 @@ RUN apt-get -y update \
 &&  DEBIAN_FRONTEND=noninteractive apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 60C317803A41BA51845E371A1E9377A2BA9EF27F \
 &&  apt-get update \
 &&  DEBIAN_FRONTEND=noninteractive apt-get -y install \
-         gcc-6 g++-6 \
+         gcc-6 g++-6 gcc-7 g++-7 \
 &&  update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 100 --slave /usr/bin/g++ g++ /usr/bin/g++-5 \
 &&  update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6 \
 #* for beam
