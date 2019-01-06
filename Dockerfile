@@ -151,7 +151,7 @@ ARG CONFIG_CPP
 #ARG MINER_GIT_URL=https://github.com/mimblewimble/grin.git
 #ARG MINER_GIT_BRANCH=master
 #ARG MINER_FOLDER=grin
-#ARG MINER_EXE=target/release/grin
+#ARG MINER_EXE="/lib/x86_64-linux-gnu/libncursesw.so.5 /lib/x86_64-linux-gnu/libtinfo.so.5 target/release/grin"
 #ARG MINER_GEN="cargo build --release"
 
 #* Nheqminer Cuda Tromp Nvidia (parent)
