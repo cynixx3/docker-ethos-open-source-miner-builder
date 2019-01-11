@@ -94,6 +94,12 @@ ARG CONFIG_CPP
 #ARG MINER_GIT_URL=https://github.com/brian112358/nevermore-miner.git
 #ARG MINER_FOLDER=nevermore-miner
 
+#* Suprminer (ccminer fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/ocminer/suprminer.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=suprminer
+#ARG CONFIG_CPP="git clone https://github.com/peters/curl-for-windows.git compat/curl-for-windows"
+
 #* Zcoin (ccminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/zcoinofficial/ccminer.git
 #ARG MINER_GIT_BRANCH=master

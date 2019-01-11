@@ -80,6 +80,23 @@ services:
         MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
         extracuda_cflags: -O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES
         extracxxflags: -O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16
+#  suprminer:
+#    volumes:
+#      - .:/host
+#    image: suprminer
+#    container_name: suprminer
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/ocminer/suprminer.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: suprminer
+#        MINER_EXE: ccminer
+#        CONFIG_CPP: git clone https://github.com/peters/curl-for-windows.git compat/curl-for-windows
+#        MINER_GEN: ./autogen.sh
+#        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
+#        extracuda_cflags: -O3 -lineno -Xcompiler -Wall  -D_FORCE_INLINES
+#        extracxxflags: -O3 -D_REENTRANT -falign-functions=16 -falign-jumps=16 -falign-labels=16
 #  zcoin-ccminer:
 #    volumes:
 #      - .:/host
