@@ -60,7 +60,15 @@ ARG extracuda_cflags
 ARG CONFIG_CPP
 
 #* Uncomment a parent (and fork) section below to build a single miner 
-#* Beam
+#* Beam Nvidia
+#ARG MINER_GIT_URL=https://github.com/BeamMW/cuda-miner.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=cuda-miner
+#ARG CONFIG_CPP="update-alternatives --set gcc /usr/bin/gcc-6"
+#ARG MINER_EXE=equihash/beam-cuda-miner
+#ARG MINER_GEN="cmake ."
+
+#* Beam AMD
 #ARG MINER_GIT_URL=https://github.com/BeamMW/opencl-miner.git
 #ARG MINER_GIT_BRANCH=master
 #ARG MINER_FOLDER=opencl-miner
