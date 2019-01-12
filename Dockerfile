@@ -166,7 +166,12 @@ ARG CONFIG_CPP
 #ARG MINER_GIT_BRANCH=master
 #ARG MINER_FOLDER=grin
 #ARG MINER_EXE="/lib/x86_64-linux-gnu/libncursesw.so.5 /lib/x86_64-linux-gnu/libtinfo.so.5 target/release/grin"
-#ARG MINER_GEN="cargo build --release"
+
+#* Grin miner
+#ARG MINER_GIT_URL=https://github.com/mimblewimble/grin-miner.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=grin-miner
+#ARG MINER_EXE="/lib/x86_64-linux-gnu/libcrypto.so.1.0.0 /lib/x86_64-linux-gnu/libssl.so.1.0.0 /lib/x86_64-linux-gnu/libncursesw.so.5 /lib/x86_64-linux-gnu/libtinfo.so.5 target/release/grin-miner grin-miner.toml"
 
 #* Nheqminer Cuda Tromp Nvidia (parent)
 #ARG MINER_GIT_URL=https://github.com/nicehash/nheqminer.git
@@ -291,7 +296,7 @@ git pull \n\
 if [ -f Makefile.am ] ; then sed -E 's/^#(nvcc_ARCH.*$)/\1/' -i Makefile.am ; fi \n\
 #* for nheqminer compatability \n\
 if [ -f CMakeLists.txt ] ; then sed -E 's/ -gencode arch=compute_20,code=sm_21;//' -i CMakeLists.txt ; fi \n\
-make \n\
+if [ -f Cargo.toml ] ; then cargo build ; else make ; fi \n\
 strip $MINER_EXE \n\
 if [ ! -d /host/$MINER_FOLDER ] ; then mkdir /host/$(echo $MINER_FOLDER | cut -d / -f 1) ; fi \n\
 rsync -av $MINER_EXE /host/$(echo $MINER_FOLDER | cut -d / -f 1) \n\

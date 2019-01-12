@@ -236,8 +236,19 @@ services:
 #        MINER_GIT_URL: https://github.com/mimblewimble/grin.git
 #        MINER_GIT_BRANCH: master
 #        MINER_FOLDER: grin
-#        MINER_EXE: target/release/grin
-#        MINER_GEN: cargo build --release
+#        MINER_EXE: /lib/x86_64-linux-gnu/libncursesw.so.5 /lib/x86_64-linux-gnu/libtinfo.so.5 target/release/grin
+#  grin-miner:
+#    volumes:
+#      - .:/host
+#    image: grin-miner
+#    container_name: grin-miner
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/mimblewimble/grin-miner.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: grin-miner
+#        MINER_EXE: /lib/x86_64-linux-gnu/libcrypto.so.1.0.0 /lib/x86_64-linux-gnu/libssl.so.1.0.0 /lib/x86_64-linux-gnu/libncursesw.so.5 /lib/x86_64-linux-gnu/libtinfo.so.5 target/release/grin-miner grin-miner.toml
 #  nheqminer-amd:
 #    volumes:
 #      - .:/host
