@@ -249,6 +249,7 @@ services:
 #        MINER_GIT_BRANCH: master
 #        MINER_FOLDER: grin-miner
 #        MINER_EXE: /lib/x86_64-linux-gnu/libcrypto.so.1.0.0 /lib/x86_64-linux-gnu/libssl.so.1.0.0 /lib/x86_64-linux-gnu/libncursesw.so.5 /lib/x86_64-linux-gnu/libtinfo.so.5 target/release/grin-miner grin-miner.toml
+#        MINER_KERNELS: target/release/plugins
 #  nheqminer-amd:
 #    volumes:
 #      - .:/host
