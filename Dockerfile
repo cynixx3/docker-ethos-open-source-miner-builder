@@ -143,6 +143,10 @@ ARG CONFIG_CPP
 #ARG MINER_KERNELS=libethash-cl/kernels/bin
 #ARG MINER_CONFIG="cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build ."
 
+
+#* Andrea Ethminer (ethminer fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/AndreaLanfranchi/ethminer.git
+
 #* Energi miner (ethminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/energicryptocurrency/energiminer.git
 #ARG MINER_FOLDER=energiminer

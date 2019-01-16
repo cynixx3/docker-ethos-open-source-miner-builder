@@ -182,6 +182,20 @@ services:
         MINER_EXE: ethminer/ethminer
         MINER_KERNELS: libethash-cl/kernels/bin/
         MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
+#  andrea-ethminer:
+#    volumes:
+#      - .:/host
+#    image: andrea-ethminer
+#    container_name: andrea-ethminer
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/AndreaLanfranchi/ethminer.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: ethminer
+#        MINER_EXE: ethminer/ethminer
+#        MINER_KERNELS: libethash-cl/kernels/bin/
+#        MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
 #  energiminer:
 #    volumes:
 #      - .:/host
