@@ -212,6 +212,19 @@ services:
 #        MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
 #        extracxxflags: -std=c++0x
 #        CONFIG_CPP: update-alternatives --set gcc /usr/bin/gcc-6
+#  progminer:
+#    volumes:
+#      - .:/host
+#    image: progminer
+#    container_name: progminer
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/gangnamtestnet/progminer.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: progminer
+#        MINER_EXE: progminer/progminer
+#        MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
   progpowminer:
     volumes:
       - .:/host

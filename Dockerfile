@@ -143,7 +143,6 @@ ARG CONFIG_CPP
 #ARG MINER_KERNELS=libethash-cl/kernels/bin
 #ARG MINER_CONFIG="cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build ."
 
-
 #* Andrea Ethminer (ethminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/AndreaLanfranchi/ethminer.git
 
@@ -154,6 +153,12 @@ ARG CONFIG_CPP
 #ARG MINER_EXE=energiminer/energiminer
 #ARG extracxxflags="-std=c++0x"
 #ARG CONFIG_CPP="update-alternatives --set gcc /usr/bin/gcc-6"
+
+#* Progminer (ethminer fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/gangnamtestnet/progminer.git
+#ARG MINER_FOLDER=progminer
+#ARG MINER_EXE=progminer/progminer
+#ARG MINER_KERNELS=""
 
 #* ProgPOW (ethminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/ifdefelse/ProgPOW.git
