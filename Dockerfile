@@ -224,6 +224,13 @@ ARG CONFIG_CPP
 #ARG MINER_GEN=./autogen.sh
 #ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
 
+#* nodecore-pow-amd-cuda-miner
+#ARG MINER_GIT_URL=https://github.com/monkins1010/nodecore-pow-AMD-cuda-miner.git
+#ARG MINER_GIT_BRANCH=AMDVERSION
+#ARG MINER_FOLDER=nodecore-pow-AMD-cuda-miner
+#ARG MINER_EXE="nodecore_pow_cuda  veri_amd"
+#ARG MINER_GEN='/usr/local/cuda/bin/nvcc -gencode=arch=compute_50,code="sm_50,compute_50" -gencode=arch=compute_52,code="sm_52,compute_52" -gencode=arch=compute_61,code="sm_61,compute_61" -gencode=arch=compute_70,code="sm_70,compute_70" -I/usr/local/cuda/include -I. -O3 -Xcompiler -Wall  -D_FORCE_INLINES   --maxrregcount=64 -o nodecore_pow_cuda kernel.cu -std=c++11'
+
 #* SGminer-GM (parent)
 #ARG MINER_GIT_URL=https://github.com/tpruvot/sgminer.git
 #ARG MINER_GIT_BRANCH=ethash
