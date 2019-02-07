@@ -5,6 +5,8 @@
 #* docker run -v $(pwd):/host -it miner
 # Just running the second command would rebuild with updates
 FROM nvidia/cuda:10.0-devel-ubuntu16.04
+#* for nodecore-pow miners
+#FROM nvidia/cuda:9.2-devel-ubuntu16.04
 
 RUN apt-get -y update \
 &&  DEBIAN_FRONTEND=noninteractive apt-get -y install \
@@ -145,6 +147,9 @@ ARG CONFIG_CPP
 
 #* Andrea Ethminer (ethminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/AndreaLanfranchi/ethminer.git
+
+#* EtherSocialNetwork Ethminer (ethminer fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/EthersocialNetwork/ethminer.git
 
 #* Energi miner (ethminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/energicryptocurrency/energiminer.git
