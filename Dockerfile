@@ -281,6 +281,10 @@ ARG CONFIG_CPP
 #ARG MINER_EXE="bin/xmr-stak bin/libxmrstak_cuda_backend.so bin/libxmrstak_opencl_backend.so"
 #ARG MINER_CONFIG="cmake -DXMR-STAK_COMPILE=generic -DCPU_ENABLE=ON -DCMAKE_LINK_STATIC=ON -DCUDA_ENABLE=ON -DOpenCL_ENABLE=ON --build ."
 
+#* Xcash-ALL (xmr-stak fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/X-CASH-official/XCASH_ALL_Miner.git
+#ARG MINER_FOLDER=XCASH_ALL_Miner
+
 #* XMR-aeon-Stak (xmr-stak fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/IndeedMiners/xmr-aeon-stak.git
 #ARG MINER_GIT_BRANCH=dev

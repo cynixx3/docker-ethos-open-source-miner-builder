@@ -480,6 +480,19 @@ services:
         MINER_FOLDER: xmr-stak
         MINER_EXE: bin/xmr-stak bin/libxmrstak_cuda_backend.so bin/libxmrstak_opencl_backend.so
         MINER_CONFIG: cmake -DXMR-STAK_COMPILE=generic -DCPU_ENABLE=ON -DCMAKE_LINK_STATIC=ON -DCUDA_ENABLE=ON -DOpenCL_ENABLE=ON --build .
+#  xcash-all:
+#    volumes:
+#      - .:/host
+#    image: xcash-all
+#    container_name: xcash-all
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/X-CASH-official/XCASH_ALL_Miner.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: XCASH_ALL_Miner
+#        MINER_EXE: bin/xmr-stak bin/libxmrstak_cuda_backend.so bin/libxmrstak_opencl_backend.so
+#        MINER_CONFIG: cmake -DXMR-STAK_COMPILE=generic -DCPU_ENABLE=ON -DCMAKE_LINK_STATIC=ON -DCUDA_ENABLE=ON -DOpenCL_ENABLE=ON --build .
 #  xmr-aeon-stak:
 #    volumes:
 #      - .:/host
