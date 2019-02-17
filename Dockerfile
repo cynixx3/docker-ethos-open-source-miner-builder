@@ -293,6 +293,11 @@ ARG CONFIG_CPP
 #ARG MINER_EXE=xmrig-amd
 #ARG MINER_CONFIG="cmake ."
 
+#* xcash-amd (xmrig-amd fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/X-CASH-official/XCASH_AMD_Miner.git
+#ARG MINER_FOLDER=XCASH_AMD_Miner
+#ARG MINER_EXE=XCASH_AMD_Miner
+
 #* xmrig-nvidia (xmrig-amd like, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/xmrig/xmrig-nvidia.git
 #ARG MINER_FOLDER=xmrig-nvidia
