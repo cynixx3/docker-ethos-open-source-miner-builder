@@ -544,7 +544,7 @@ services:
 #        MINER_GIT_BRANCH: master
 #        MINER_FOLDER: xmrig-nvidia
 #        MINER_EXE: xmrig-nvidia
-#        MINER_CONFIG: cmake -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DCUDA_ARCH=30;50;60 .
+#        MINER_CONFIG: cmake -DBUILD_SHARED_LIBS=OFF -DITK_DYNAMIC_LOADING=OFF -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DCUDA_ARCH=30;50;60 .
 #  xmrig-MoneroOcean:
 #    volumes:
 #      - .:/host

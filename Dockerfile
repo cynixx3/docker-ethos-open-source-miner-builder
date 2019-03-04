@@ -306,7 +306,7 @@ ARG CONFIG_CPP
 #ARG MINER_GIT_URL=https://github.com/xmrig/xmrig-nvidia.git
 #ARG MINER_FOLDER=xmrig-nvidia
 #ARG MINER_EXE=xmrig-nvidia
-#ARG MINER_CONFIG="cmake -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DCUDA_ARCH=30;50;60 ."
+#ARG MINER_CONFIG="cmake -DBUILD_SHARED_LIBS=OFF -DITK_DYNAMIC_LOADING=OFF -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs -DCUDA_ARCH=30;50;60 ."
 
 #* xmrig Monero Ocean (xmrig-amd fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/MoneroOcean/xmrig.git
