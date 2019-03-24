@@ -3,6 +3,19 @@ version: '2.0'
 # binaries will be automatically copied to the directory this is run in
 # building more than one of an exe will result in it being overwritten. 
 services:
+#  amdmemorytweak:
+#    volumes:
+#      - .:/host
+#    image: amdmemorytweak
+#    container_name: amdmemorytweak
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/Eliovp/amdmemorytweak.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: amdmemorytweak
+#        MINER_EXE: amdmemtool
+#        MINER_GEN: g++ amdmemorytweak.cpp -lpci -lresolv -o amdmemtool
 #  beam-cuda:
 #    volumes:
 #      - .:/host

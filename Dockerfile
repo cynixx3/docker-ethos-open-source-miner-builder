@@ -27,6 +27,8 @@ RUN apt-get -y update \
         libhwloc-dev libmicrohttpd-dev ocl-icd-opencl-dev opencl-headers \
 #* for xmrig-amd
         libuv1-dev \
+#* for amdmemorytweak
+        pciutils-dev libpci-dev \
 #* for grin
         clang curl libncurses5-dev libncursesw5-dev zlib1g-dev \
 &&  curl https://sh.rustup.rs -o rustup.sh \
@@ -60,6 +62,13 @@ ARG extracflags
 ARG extracxxflags
 ARG extracuda_cflags
 ARG CONFIG_CPP
+
+#* AmdMemoryTweak
+#ARG MINER_GIT_URL=https://github.com/Eliovp/amdmemorytweak.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=amdmemorytweak
+#ARG MINER_GEN="g++ amdmemorytweak.cpp -lpci -lresolv -o amdmemtool"
+#ARG MINER_EXE=amdmemtool
 
 #* Uncomment a parent (and fork) section below to build a single miner 
 #* Beam Nvidia
