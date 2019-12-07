@@ -252,6 +252,13 @@ ARG CONFIG_CPP
 #ARG MINER_EXE="nodecore_pow_cuda veri_amd"
 #ARG MINER_GEN='/usr/local/cuda/bin/nvcc -gencode=arch=compute_50,code="sm_50,compute_50" -gencode=arch=compute_52,code="sm_52,compute_52" -gencode=arch=compute_61,code="sm_61,compute_61" -gencode=arch=compute_70,code="sm_70,compute_70" -I/usr/local/cuda/include -I. -O3 -Xcompiler -Wall -D_FORCE_INLINES --ptxas-options=-v --maxrregcount=64 -o nodecore_pow_cuda kernel.cu -std=c++11'
 
+#* RandomX_OpenCL (parent)
+#ARG MINER_GIT_URL=https://github.com/SChernykh/RandomX_OpenCL.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=RandomX_OpenCL/RandomX
+#ARG MINER_EXE="librandomx.a randomx-tests randomx-codegen randomx-benchmark"
+#ARG MINER_CONFIG="cmake -DARCH=generic --build ."
+
 #* SGminer-GM (parent)
 #ARG MINER_GIT_URL=https://github.com/tpruvot/sgminer.git
 #ARG MINER_GIT_BRANCH=ethash
