@@ -411,6 +411,19 @@ services:
 #        MINER_EXE: nsgminer
 #        MINER_GEN: ./autogen.sh
 #        MINER_CONFIG: ./configure --with-cuda=/usr/local/cuda
+#  randomx-opencl:
+#    volumes:
+#      - .:/host
+#    image: randomx-opencl
+#    container_name: randomx-opencl
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/SChernykh/RandomX_OpenCL.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: RandomX_OpenCL/RandomX
+#        MINER_EXE: librandomx.a randomx-tests randomx-codegen randomx-benchmark
+#        MINER_CONFIG: cmake -DARCH=generic --build .
   sgminer:
     volumes:
       - .:/host
