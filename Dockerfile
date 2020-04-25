@@ -63,14 +63,7 @@ ARG extracxxflags
 ARG extracuda_cflags
 ARG CONFIG_CPP
 
-#* AmdMemoryTweak
-#ARG MINER_GIT_URL=https://github.com/Eliovp/amdmemorytweak.git
-#ARG MINER_GIT_BRANCH=master
-#ARG MINER_FOLDER=amdmemorytweak
-#ARG MINER_GEN="g++ amdmemorytweak.cpp -lpci -lresolv -o amdmemtool"
-#ARG MINER_EXE=amdmemtool
-
-#* Uncomment a parent (and fork) section below to build a single miner 
+#* Uncomment a parent (and fork) section below to build a single miner
 #* Beam Nvidia
 #ARG MINER_GIT_URL=https://github.com/BeamMW/cuda-miner.git
 #ARG MINER_GIT_BRANCH=master
@@ -95,6 +88,12 @@ ARG CONFIG_CPP
 #ARG MINER_EXE=bfgminer
 #ARG MINER_GEN=./autogen.sh
 #ARG MINER_CONFIG="./configure --with-cuda=/usr/local/cuda"
+
+#* CAST-XMR (USELESS no code)
+#ARG MINER_GIT_URL=https://github.com/glph3k/cast_xmr.git
+#ARG MINER_GIT_BRANCH=master
+#ARG MINER_FOLDER=cast_xmr-vega
+#ARG MINER_EXE=cast_xmr-vega
 
 #* CCMiner (parent)
 #ARG MINER_GIT_URL=https://github.com/tpruvot/ccminer.git
@@ -170,6 +169,12 @@ ARG CONFIG_CPP
 
 #* Progminer (ethminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/gangnamtestnet/progminer.git
+#ARG MINER_FOLDER=progminer
+#ARG MINER_EXE=progminer/progminer
+#ARG MINER_KERNELS=""
+
+#* Progminer (ethminer fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/hyle-team/progminer.git
 #ARG MINER_FOLDER=progminer
 #ARG MINER_EXE=progminer/progminer
 #ARG MINER_KERNELS=""
