@@ -243,7 +243,7 @@ services:
 #    volumes:
 #      - .:/host
 #    image: progminer
-#    container_name: progminer
+#    container_name: hyle-progminer
 #    build:
 #      context: .
 #      args:
@@ -251,6 +251,19 @@ services:
 #        MINER_GIT_BRANCH: master
 #        MINER_FOLDER: progminer
 #        MINER_EXE: progminer/progminer
+#        MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
+#  kawpowminer:
+#    volumes:
+#      - .:/host
+#    image: progminer
+#    container_name: kawpowminer
+#    build:
+#      context: .
+#      args:
+#        MINER_GIT_URL: https://github.com/RavenCommunity/kawpowminer.git
+#        MINER_GIT_BRANCH: master
+#        MINER_FOLDER: kawpowminer
+#        MINER_EXE: kawpowminer/kawpowminer
 #        MINER_CONFIG: cmake -DETHASHCL=ON -DETHASHCUDA=ON -DETHSTRATUM=ON --build .
   progpowminer:
     volumes:

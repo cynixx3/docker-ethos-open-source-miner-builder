@@ -173,6 +173,12 @@ ARG CONFIG_CPP
 #ARG MINER_EXE=progminer/progminer
 #ARG MINER_KERNELS=""
 
+#* KAWPOWminer (ethminer fork, duplicate values above omitted below)
+#ARG MINER_GIT_URL=https://github.com/RavenCommunity/kawpowminer.git
+#ARG MINER_FOLDER=kawpowminer
+#ARG MINER_EXE=kawpowminer/kawpowminer
+#ARG MINER_KERNELS=""
+
 #* Progminer (ethminer fork, duplicate values above omitted below)
 #ARG MINER_GIT_URL=https://github.com/hyle-team/progminer.git
 #ARG MINER_FOLDER=progminer
